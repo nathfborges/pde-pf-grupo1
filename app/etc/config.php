@@ -343,7 +343,7 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Yotpo_Yotpo' => 1,
+        'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
         'websites' => [
@@ -353,7 +353,7 @@ return [
                 'name' => 'Admin',
                 'sort_order' => '0',
                 'default_group_id' => '0',
-                'is_default' => '0',
+                'is_default' => '0'
             ],
             'skate_ibc' => [
                 'website_id' => '1',
@@ -361,7 +361,7 @@ return [
                 'name' => 'Skate IBC Website',
                 'sort_order' => '1',
                 'default_group_id' => '1',
-                'is_default' => '1',
+                'is_default' => '1'
             ],
             'games_ibc' => [
                 'website_id' => '2',
@@ -369,34 +369,34 @@ return [
                 'name' => 'Games IBC Website',
                 'sort_order' => '2',
                 'default_group_id' => '2',
-                'is_default' => '0',
-            ],
+                'is_default' => '0'
+            ]
         ],
         'groups' => [
-            0 => [
+            [
                 'group_id' => '0',
                 'website_id' => '0',
                 'name' => 'Default',
                 'root_category_id' => '0',
                 'default_store_id' => '2',
-                'code' => 'default',
+                'code' => 'default'
             ],
-            1 => [
+            [
                 'group_id' => '1',
                 'website_id' => '1',
                 'name' => 'Skate IBC Group',
                 'root_category_id' => '2',
                 'default_store_id' => '1',
-                'code' => 'skate_ibc',
+                'code' => 'skate_ibc'
             ],
-            2 => [
+            [
                 'group_id' => '2',
                 'website_id' => '2',
                 'name' => 'Games IBC Group',
                 'root_category_id' => '2',
                 'default_store_id' => '3',
-                'code' => 'games_ibc',
-            ],
+                'code' => 'games_ibc'
+            ]
         ],
         'stores' => [
             'admin' => [
@@ -406,7 +406,7 @@ return [
                 'group_id' => '0',
                 'name' => 'Admin',
                 'sort_order' => '0',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'skate_ibc_1' => [
                 'store_id' => '1',
@@ -415,7 +415,7 @@ return [
                 'group_id' => '1',
                 'name' => 'Skate IBC Store View 1',
                 'sort_order' => '1',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'skate_ibc_2' => [
                 'store_id' => '2',
@@ -424,7 +424,7 @@ return [
                 'group_id' => '1',
                 'name' => 'Skate IBC Store View 2',
                 'sort_order' => '1',
-                'is_active' => '1',
+                'is_active' => '1'
             ],
             'games_ibc' => [
                 'store_id' => '3',
@@ -433,9 +433,9 @@ return [
                 'group_id' => '2',
                 'name' => 'Games IBC Store View',
                 'sort_order' => '2',
-                'is_active' => '1',
-            ],
-        ],
+                'is_active' => '1'
+            ]
+        ]
     ],
     'themes' => [
         'frontend/Magento/blank' => [
@@ -445,7 +445,7 @@ return [
             'is_featured' => '0',
             'area' => 'frontend',
             'type' => '0',
-            'code' => 'Magento/blank',
+            'code' => 'Magento/blank'
         ],
         'frontend/Magento/luma' => [
             'parent_id' => 'Magento/blank',
@@ -454,7 +454,7 @@ return [
             'is_featured' => '0',
             'area' => 'frontend',
             'type' => '0',
-            'code' => 'Magento/luma',
+            'code' => 'Magento/luma'
         ],
         'adminhtml/Magento/backend' => [
             'parent_id' => null,
@@ -463,8 +463,8 @@ return [
             'is_featured' => '0',
             'area' => 'adminhtml',
             'type' => '0',
-            'code' => 'Magento/backend',
-        ],
+            'code' => 'Magento/backend'
+        ]
     ],
     'system' => [
         'websites' => [
