@@ -51,7 +51,7 @@ class RegisterThemesGames implements DataPatchInterface
         $ibcGamesId = $this->storeManager->getStore('games_ibc')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
-            7,
+            5,
             ScopeInterface::SCOPE_STORES,
             $ibcGamesId
         );

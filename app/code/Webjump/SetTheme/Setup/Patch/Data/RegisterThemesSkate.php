@@ -51,7 +51,7 @@ class RegisterThemesSkate implements DataPatchInterface
         $ibcSkateId = $this->storeManager->getStore('skate_ibc_1')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
-            6,
+            4,
             ScopeInterface::SCOPE_STORES,
             $ibcSkateId
         );
