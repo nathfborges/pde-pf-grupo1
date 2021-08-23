@@ -2,36 +2,33 @@
 
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
-use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\InstallDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
-use Magento\Catalog\Setup\CategorySetupFactory;
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Model\Config as EavConfig;
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Customer\Model\Customer;
+use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Setup\CustomerSetup;
-use Magento\Eav\Setup\EavSetup;
-use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Customer\Model\Customer;
-use Magento\Eav\Model\Attribute\Data\Select;
-use Magento\Customer\Model\ResourceModel\Attribute;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 
 class CreateSkateAttributeData implements DataPatchInterface
 {
+    const SHAPE_SIZE = 'shape_size';
+
+    /**
+     * @var AttributeSetFactory
+     */
     private $attributeSetFactory;
     private $attributeSet;
     private $categorySetupFactory;
     /**
      * @var \Magento\Framework\Setup\ModuleDataSetupInterface
      */
-    private $moduleDataSetup;
-
-    /**
-     * @var CustomerSetup
-     */
-    private $customerSetupFactory;
+    private $setup;
 
     /**
      * EavSetupFactory
@@ -41,28 +38,42 @@ class CreateSkateAttributeData implements DataPatchInterface
     private $eavSetupFactory;
 
     /**
+     * @var EavConfig
+     */
+    private $eavConfig;
+
+    /**
+     * @var CustomerSetupFactory
+     */
+    protected $customerSetupFactory;
+
+    /**
      * @var Attribute
      */
     private $attributeResource;
 
     /**
      * AttributeSetData constructor.
-     * @
+     * 
+     * @param ModuleDataSetupInterface $setup
+     * @param EavSetupFactory $eavSetupFactory
+     * @param EavConfig $eavConfig
+     * @param CustomerSetupFactory $customerSetupFactory
+     * @param AttributeSetFactory $attributeSetFactory
      */
     public function __construct(
-        AttributeSetFactory $attributeSetFactory,
-        CategorySetupFactory $categorySetupFactory,
-        ModuleDataSetupInterface $moduleDataSetup,
-        CustomerSetupFactory $customerSetupFactory,
+        ModuleDataSetupInterface $setup,
         EavSetupFactory $eavSetupFactory,
-        Attribute $attributeResource
-    ) {
-        $this->moduleDataSetup = $moduleDataSetup;
-        $this->attributeSetFactory = $attributeSetFactory;
-        $this->categorySetupFactory = $categorySetupFactory;
-        $this->customerSetupFactory = $customerSetupFactory;
+        EavConfig $eavConfig,
+        CustomerSetupFactory $customerSetupFactory,
+        AttributeSetFactory $attributeSetFactory
+    )
+    {
+        $this->setup = $setup;
         $this->eavSetupFactory = $eavSetupFactory;
-        $this->attributeResource = $attributeResource;
+        $this->eavConfig = $eavConfig;
+        $this->customerSetupFactory = $customerSetupFactory;
+        $this->attributeSetFactory = $attributeSetFactory;
     }
 
     /**
@@ -71,8 +82,8 @@ class CreateSkateAttributeData implements DataPatchInterface
      */
     public function apply()
     {
-        $this->moduleDataSetup->getConnection()->startSetup();
-        $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $this->setup->getConnection()->startSetup();
+        $categorySetup = $this->categorySetupFactory->create(['setup' => $this->setup]);
 
         $attributeSet = $this->attributeSetFactory->create();
         $entityTypeId = $categorySetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
@@ -89,49 +100,72 @@ class CreateSkateAttributeData implements DataPatchInterface
         $attributeSet->initFromSkeleton($attributeSetId);
         $attributeSet->save();
 
-        $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
+        $this->createAttributeShapeSize($eavSetup);
+        $costumerSetup = $this->customerSetupFactory->create(['setup' => $this->setup]);
+        $this->defineRelationshipAttributeShapeSize($costumerSetup);
 
-        /**
-         * Add attribute
-         */
-        $customerSetup->addAttribute(
+        $this->setup->getConnection()->endSetup();
+    }
+
+    private function createAttributeShapeSize(EavSetup $eavSetup)
+    {
+        $eavSetup->addAttribute(
             Customer::ENTITY,
-            'shape_size',
+            self::SHAPE_SIZE,
             [
                 'type' => 'float',
+                'source' => '',
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
+                'backend' => '',
                 'label' => 'Select Shape Size',
                 'input' => 'select',
-                'options' => [
-                    '7.5',
-                    '7.75',
-                    '8.0',
-                    '8.25',
-                    '8.50'
-                ],
-                'backend' => Select::class,
-                'position' => 100,
                 'required' => false,
-                'system' => false,
+                'visible' => true,
+                'user_defined' => true,
+                'sort_order' => 130,
+                'position' => 130,
+                'system' => 0,
+                'options' => [
+                    7.5,
+                    7.75,
+                    8.0,
+                    8.25,
+                    8.5
+                ]
             ]
         );
+    }
 
-        /**
-         * Fetch the newly created attribute and set options to be used in forms
-         */
-        $shapeSizeAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'shape_size');
+    private function defineRelationshipAttributeShapeSize(CustomerSetup $customerSetup): void
+    {
+        $customerEntity = $customerSetup->getEavConfig()->getEntityType(Customer::ENTITY);
+        $attributeSetId = $customerEntity->getDefaultAttributeSetId();
 
-        $shapeSizeAttribute->setData('used_in_forms', [
-            'adminhtml_customer',
-            'adminhtml_checkout',
-            'adminhtml_customer_address',
-            'customer_account_edit',
-            'customer_address_edit',
-            'customer_register_address',
-        ]);
+        $attributeSet = $this->attributeSetFactory->create();
+        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+        $attribute = $customerSetup->getEavConfig()
+            ->getAttribute(
+                Customer::ENTITY,
+                self::SHAPE_SIZE
+            )
+            ->addData(
+                [
+                    'attribute_set_id' => $attributeSetId,
+                    'attribute_group_id' => $attributeGroupId,
+                    'used_in_forms' => ['adminhtml_customer','adminhtml_checkout','customer_account_create','customer_account_edit'],
+                ]
+            );
+        $attribute->save();
+    }
 
-        $this->attributeResource->save($shapeSizeAttribute);
-
-        $this->moduleDataSetup->getConnection()->endSetup();
+    public function revert()
+    {
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
+        $eavSetup->removeAttribute(
+            Customer::ENTITY,
+            self::SHAPE_SIZE
+        );
     }
 
     /**
