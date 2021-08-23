@@ -414,7 +414,7 @@ return [
                 'code' => 'skate_ibc_1',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Skate IBC Store View 1',
+                'name' => 'Skate IBC Store - Português',
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
@@ -423,7 +423,7 @@ return [
                 'code' => 'skate_ibc_2',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Skate IBC Store View 2',
+                'name' => 'Skate IBC Store - English',
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
@@ -432,7 +432,7 @@ return [
                 'code' => 'games_ibc',
                 'website_id' => '2',
                 'group_id' => '2',
-                'name' => 'Games IBC Store View',
+                'name' => 'Games IBC Store',
                 'sort_order' => '2',
                 'is_active' => '1'
             ]
@@ -488,6 +488,23 @@ return [
                         'base_url' => 'https://ibcgames.localhost/'
                     ]
                 ]
+            ]
+        ],
+        'stores' => [
+            'skate_ibc_2' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'en_US',
+                        'language' => 'en',
+                    ],
+                ],
+                'currency' => [
+                    'options' => [
+                        'base' => 'USD',
+                        'default' => 'USD',
+                        'allow' => 'USD',
+                    ],
+                ],
             ]
         ]
     ]
