@@ -3,11 +3,12 @@
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Category;
-use Magento\Catalog\Helper\DefaultCategoryFactory;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Store\Model\Group;
+use Magento\Store\Model\GroupFactory;
 
 
 class InstallCategories implements DataPatchInterface, PatchVersionInterface
@@ -23,26 +24,34 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     private $categorySetup;
 
     /**
-     * @var DefaultCategoryFactory
+     * @var GroupFactory
      */
-    private $defaultCategoryFactory;
+    private $groupFactory;
+
+    /**
+     * @var Group
+     */
+    private $groupResourceModel;
 
 
     /**
      * PatchInitial constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param CategorySetupFactory $categorySetup
-     * @param DefaultCategoryFactory $defaultCategoryFactory
+     * @param GroupFactory $groupFactory
+     * @param Group $group
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         CategorySetupFactory     $categorySetup,
-        DefaultCategoryFactory   $defaultCategoryFactory
+        GroupFactory             $groupFactory,
+        Group                   $group
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->categorySetupFactory = $categorySetup;
-        $this->defaultCategoryFactory = $defaultCategoryFactory;
+        $this->groupFactory = $groupFactory;
+        $this->groupResourceModel = $group;
     }
 
     public function apply()
@@ -50,11 +59,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $this->moduleDataSetup->getConnection()->startSetup();
 
         /** @var CategorySetupFactory $categorySetup */
-        /** @var DefaultCategoryFactory $defaultCategoryFactory */
 
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
         $rootCategoryId = Category::TREE_ROOT_ID;
-        $defaultCategory = $this->defaultCategoryFactory->create();
+
 
         // Create Root Catalog Node
         $categorySetup->createCategory()
@@ -92,7 +100,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(2)
-            ->setPosition(3)
             ->setInitialSetupFlag(true)
             ->save();
 
@@ -253,6 +260,11 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
+
+        $group = $this->groupFactory->create();
+        $group->load('1')
+            ->setRootCategoryId(20)
+            ->save($group);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
