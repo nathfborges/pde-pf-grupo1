@@ -3,12 +3,11 @@
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Category;
-use Magento\Catalog\Setup\CategorySetup;
+use Magento\Catalog\Helper\DefaultCategoryFactory;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
-use Magento\Catalog\Helper\DefaultCategoryFactory;
 
 
 class InstallCategories implements DataPatchInterface, PatchVersionInterface
@@ -21,40 +20,41 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
     /**
      * @var CategorySetupFactory
      */
-    private $categorySetupFactory;
+    private $categorySetup;
 
     /**
      * @var DefaultCategoryFactory
      */
-    private $defaultCategory;
+    private $defaultCategoryFactory;
 
 
     /**
      * PatchInitial constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param CategorySetupFactory $categorySetupFactory
+     * @param CategorySetupFactory $categorySetup
      * @param DefaultCategoryFactory $defaultCategoryFactory
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        CategorySetupFactory     $categorySetupFactory,
-        DefaultCategoryFactory   $defaultCategoryFactory,
+        CategorySetupFactory     $categorySetup,
+        DefaultCategoryFactory   $defaultCategoryFactory
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
-        $this->categorySetupFactory = $categorySetupFactory;
+        $this->categorySetupFactory = $categorySetup;
         $this->defaultCategoryFactory = $defaultCategoryFactory;
     }
 
     public function apply()
     {
+        $this->moduleDataSetup->getConnection()->startSetup();
 
-        /** @var CategorySetup $categorySetup */
-        /** @var DefaultCategoryFactory $defaultCategory */
+        /** @var CategorySetupFactory $categorySetup */
+        /** @var DefaultCategoryFactory $defaultCategoryFactory */
+
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
         $rootCategoryId = Category::TREE_ROOT_ID;
         $defaultCategory = $this->defaultCategoryFactory->create();
-        $defaultCategoryId = $defaultCategory->getId();
 
         // Create Root Catalog Node
         $categorySetup->createCategory()
@@ -68,14 +68,14 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
 
-            // Create Jogos Category
-        $category = $categorySetup->createCategory();
-        $category->load($defaultCategoryId)
+        // Create Jogos Category
+        $categoryJogos = $categorySetup->createCategory();
+        $categoryJogos->load(2)
             ->setId(2)
             ->setStoreId(3)
             ->setName('Jogos')
             ->setParentId($rootCategoryId)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId)
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId())
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(1)
@@ -86,8 +86,8 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(3)
             ->setId(3)
             ->setStoreId(3)
-            ->setParentId($defaultCategoryId)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 3)
+            ->setParentId($categoryJogos->getId())
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 3)
             ->setName('Luta')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -100,8 +100,8 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(4)
             ->setId(4)
             ->setStoreId(3)
-            ->setParentId($defaultCategoryId)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 4)
+            ->setParentId($categoryJogos->getId())
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 4)
             ->setName('Simulação')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -113,8 +113,8 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(5)
             ->setId(5)
             ->setStoreId(3)
-            ->setParentId($defaultCategoryId)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 5)
+            ->setParentId($categoryJogos->getId())
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 5)
             ->setName('Aventura')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -124,10 +124,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $category = $categorySetup->createCategory();
         $category->load(6)
-            ->setParentId($defaultCategoryId)
+            ->setParentId($categoryJogos->getId())
             ->setId(6)
             ->setStoreId(3)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 6)
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 6)
             ->setName('Terror')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -136,10 +136,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $category = $categorySetup->createCategory();
         $category->load(7)
-            ->setParentId($defaultCategoryId)
+            ->setParentId($categoryJogos->getId())
             ->setId(7)
             ->setStoreId(3)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 7)
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 7)
             ->setName('Esporte')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -149,10 +149,10 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $category = $categorySetup->createCategory();
         $category->load(9)
-            ->setParentId($defaultCategoryId)
+            ->setParentId($categoryJogos->getId())
             ->setId(9)
             ->setStoreId(3)
-            ->setPath($rootCategoryId . '/' . $defaultCategoryId . '/' . 9)
+            ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 9)
             ->setStoreId(3)
             ->setName('Estratégia')
             ->setDisplayMode('PRODUCTS')
@@ -167,13 +167,14 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setStoreId(1)
             ->setId(20)
             ->setParentId($rootCategoryId)
-            ->setPath($rootCategoryId . '/' . 20)
+            ->setPath($rootCategoryId . '/' . $categorySkate->getId())
             ->setName('Skate')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
             ->setLevel(1)
             ->setInitialSetupFlag(true)
             ->save();
+
 
         $categorySkatesCom = $categorySetup->createCategory();
         $categorySkatesCom->load(40)
@@ -252,6 +253,8 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setLevel(2)
             ->setInitialSetupFlag(true)
             ->save();
+
+        $this->moduleDataSetup->getConnection()->endSetup();
     }
 
     public static function getVersion()
