@@ -1,23 +1,10 @@
 & when (@media-common = true) {
-    .lib-font-face(
-        @family-name: @font-family-name__base,
-        @font-path: '@{baseDir}fonts/roboto/bold/Roboto-Bold',
-        @font-weight: 700,
-        @font-style: normal
-    );
-
-    .lib-font-face(
-        @family-name: @font-family-name__base,
-        @font-path: '@{baseDir}fonts/roboto/regular/Roboto-Regular',
-        @font-weight: 400,
-        @font-style: normal 
-    );
-    .lib-font-face(
-        @family-name: @font-family-name__base,
-        @font-path: '@{baseDir}fonts/roboto/medium/Roboto-Medium',
-        @font-weight: 500,
-        @font-style: normal
-    );
+    @font-face {
+        font-family: 'Roboto';
+        src: url('../fonts/roboto/Roboto-Bold.ttf');
+        font-weight: 300;
+        font-style: normal
+    }
 }
 //
 //  Desktop
