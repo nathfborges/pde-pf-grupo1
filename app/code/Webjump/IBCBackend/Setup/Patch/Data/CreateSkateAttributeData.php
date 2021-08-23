@@ -2,6 +2,7 @@
 
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
+use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Model\Config as EavConfig;
@@ -9,7 +10,6 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Customer\Model\Customer;
-use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Setup\CustomerSetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
@@ -66,7 +66,8 @@ class CreateSkateAttributeData implements DataPatchInterface
         EavSetupFactory $eavSetupFactory,
         EavConfig $eavConfig,
         CustomerSetupFactory $customerSetupFactory,
-        AttributeSetFactory $attributeSetFactory
+        AttributeSetFactory $attributeSetFactory,
+        CategorySetupFactory $categorySetupFactory
     )
     {
         $this->setup = $setup;
@@ -74,6 +75,7 @@ class CreateSkateAttributeData implements DataPatchInterface
         $this->eavConfig = $eavConfig;
         $this->customerSetupFactory = $customerSetupFactory;
         $this->attributeSetFactory = $attributeSetFactory;
+        $this->categorySetupFactory = $categorySetupFactory;
     }
 
     /**
