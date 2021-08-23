@@ -1,0 +1,38 @@
+& when (@media-common = true) {
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/roboto/bold/Roboto-Bold',
+        @font-weight: 700,
+        @font-style: normal
+    );
+
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/roboto/regular/Roboto-Regular',
+        @font-weight: 400,
+        @font-style: normal 
+    );
+    .lib-font-face(
+        @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/roboto/medium/Roboto-Medium',
+        @font-weight: 500,
+        @font-style: normal
+    );
+}
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+}
