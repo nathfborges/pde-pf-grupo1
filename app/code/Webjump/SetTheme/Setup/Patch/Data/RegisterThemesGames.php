@@ -21,7 +21,7 @@ use Magento\Store\Model\ScopeInterface;
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
  */
-class RegisterThemesSkate implements DataPatchInterface
+class RegisterThemesGames implements DataPatchInterface
 {
     /**
      * @var ConfigInterface
@@ -48,12 +48,12 @@ class RegisterThemesSkate implements DataPatchInterface
     public function apply()
     {
 
-        $ibcSkateId = $this->storeManager->getStore('skate_ibc_1')->getId();
+        $ibcGamesId = $this->storeManager->getStore('games_ibc')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
-            6,
+            7,
             ScopeInterface::SCOPE_STORES,
-            $ibcSkateId
+            $ibcGamesId
         );
     }
     /**
