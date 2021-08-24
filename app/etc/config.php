@@ -343,6 +343,7 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
+        'Webjump_IBCBackend' => 1,
         'Webjump_SetTheme' => 1,
         'Yotpo_Yotpo' => 1
     ],
@@ -386,7 +387,7 @@ return [
                 'group_id' => '1',
                 'website_id' => '1',
                 'name' => 'Skate IBC Group',
-                'root_category_id' => '2',
+                'root_category_id' => '20',
                 'default_store_id' => '1',
                 'code' => 'skate_ibc'
             ],
@@ -495,16 +496,16 @@ return [
                 'general' => [
                     'locale' => [
                         'code' => 'en_US',
-                        'language' => 'en',
-                    ],
+                        'language' => 'en'
+                    ]
                 ],
                 'currency' => [
                     'options' => [
                         'base' => 'USD',
                         'default' => 'USD',
-                        'allow' => 'USD',
-                    ],
-                ],
+                        'allow' => 'USD'
+                    ]
+                ]
             ]
         ]
     ]
