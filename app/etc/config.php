@@ -343,7 +343,7 @@ return [
         'Vertex_RequestLoggingApi' => 1,
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
-        'Webjump_IBCBackend' => 0,
+        'Webjump_IBCBackend' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
@@ -495,16 +495,16 @@ return [
                 'general' => [
                     'locale' => [
                         'code' => 'en_US',
-                        'language' => 'en',
-                    ],
+                        'language' => 'en'
+                    ]
                 ],
                 'currency' => [
                     'options' => [
                         'base' => 'USD',
                         'default' => 'USD',
-                        'allow' => 'USD',
-                    ],
-                ],
+                        'allow' => 'USD'
+                    ]
+                ]
             ]
         ]
     ]

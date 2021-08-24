@@ -261,6 +261,19 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->setInitialSetupFlag(true)
             ->save();
 
+        $categoryCapas = $categorySetup->createCategory();
+        $categoryCapas->load(91)
+            ->setStoreId(1)
+            ->setId(91)
+            ->setParentId($categoryAcessorios->getId())
+            ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . $categoryAcessorios->getId() . '/' . 91)
+            ->setName('Capas')
+            ->setDisplayMode('PRODUCTS')
+            ->setIsActive(1)
+            ->setLevel(3)
+            ->setInitialSetupFlag(true)
+            ->save();
+
         $group = $this->groupFactory->create();
         $group->load('1')
             ->setRootCategoryId(20)
@@ -271,7 +284,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
     public static function getVersion()
     {
-        return '2.0.0';
+        return '3.0.0';
     }
 
     /**
