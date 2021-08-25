@@ -6,7 +6,9 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 
-
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigurePayments implements DataPatchInterface
 {
     /**
