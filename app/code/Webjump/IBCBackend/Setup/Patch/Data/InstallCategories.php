@@ -11,6 +11,9 @@ use Magento\Store\Model\Group;
 use Magento\Store\Model\GroupFactory;
 
 
+/**
+ * @codeCoverageIgnore
+ */
 class InstallCategories implements DataPatchInterface, PatchVersionInterface
 {
     /**
