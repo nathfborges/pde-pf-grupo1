@@ -15,9 +15,10 @@ use Magento\Customer\Setup\CustomerSetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 
-class CreateSkateAttributeData implements DataPatchInterface
+class CreateSkateAttributeSet implements DataPatchInterface
 {
     const SHAPE_SIZE = 'shape_size';
+    const ATTRIBUTE_SET_ID = 'Skate';
 
     /**
      * @var AttributeSetFactory
@@ -91,7 +92,7 @@ class CreateSkateAttributeData implements DataPatchInterface
         $entityTypeId = $categorySetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
         $attributeSetId = $categorySetup->getDefaultAttributeSetId($entityTypeId);
         $data = [
-            'attribute_set_name' => 'Skate',
+            'attribute_set_name' => self::ATTRIBUTE_SET_ID,
             'entity_type_id' => $entityTypeId,
             'sort_order' => 199,
         ];
@@ -102,73 +103,30 @@ class CreateSkateAttributeData implements DataPatchInterface
         $attributeSet->initFromSkeleton($attributeSetId);
         $attributeSet->save();
 
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
-        $this->createAttributeShapeSize($eavSetup);
-        $costumerSetup = $this->customerSetupFactory->create(['setup' => $this->setup]);
-        $this->defineRelationshipAttributeShapeSize($costumerSetup);
-
         $this->setup->getConnection()->endSetup();
     }
 
-    private function createAttributeShapeSize(EavSetup $eavSetup)
-    {
-        $eavSetup->addAttribute(
-            Customer::ENTITY,
-            self::SHAPE_SIZE,
-            [
-                'type' => 'float',
-                'source' => '',
-                'global' => ScopedAttributeInterface::SCOPE_STORE,
-                'backend' => '',
-                'label' => 'Select Shape Size',
-                'input' => 'select',
-                'required' => false,
-                'visible' => true,
-                'user_defined' => true,
-                'sort_order' => 130,
-                'position' => 130,
-                'system' => 0,
-                'options' => [
-                    7.5,
-                    7.75,
-                    8.0,
-                    8.25,
-                    8.5
-                ]
-            ]
-        );
-    }
+    // private function defineRelationshipAttributeShapeSize(CustomerSetup $customerSetup): void
+    // {
+    //     $customerEntity = $customerSetup->getEavConfig()->getEntityType(Customer::ENTITY);
+    //     $attributeSetId = $customerEntity->getDefaultAttributeSetId();
 
-    private function defineRelationshipAttributeShapeSize(CustomerSetup $customerSetup): void
-    {
-        $customerEntity = $customerSetup->getEavConfig()->getEntityType(Customer::ENTITY);
-        $attributeSetId = $customerEntity->getDefaultAttributeSetId();
-
-        $attributeSet = $this->attributeSetFactory->create();
-        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-        $attribute = $customerSetup->getEavConfig()
-            ->getAttribute(
-                Customer::ENTITY,
-                self::SHAPE_SIZE
-            )
-            ->addData(
-                [
-                    'attribute_set_id' => $attributeSetId,
-                    'attribute_group_id' => $attributeGroupId,
-                    'used_in_forms' => ['adminhtml_customer','adminhtml_checkout','customer_account_create','customer_account_edit'],
-                ]
-            );
-        $attribute->save();
-    }
-
-    public function revert()
-    {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->setup]);
-        $eavSetup->removeAttribute(
-            Customer::ENTITY,
-            self::SHAPE_SIZE
-        );
-    }
+    //     $attributeSet = $this->attributeSetFactory->create();
+    //     $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+    //     $attribute = $customerSetup->getEavConfig()
+    //         ->getAttribute(
+    //             Customer::ENTITY,
+    //             self::SHAPE_SIZE
+    //         )
+    //         ->addData(
+    //             [
+    //                 'attribute_set_id' => $attributeSetId,
+    //                 'attribute_group_id' => $attributeGroupId,
+    //                 'used_in_forms' => ['adminhtml_customer','adminhtml_checkout','customer_account_create','customer_account_edit'],
+    //             ]
+    //         );
+    //     $attribute->save();
+    // }
 
     /**
      * {@inheritdoc}

@@ -10,8 +10,10 @@ use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 
-class CreateGamesAttributeData implements DataPatchInterface
+class CreateGamesAttributeSet implements DataPatchInterface
 {
+    CONST ATTRIBUTE_SET_ID = 'Games'; 
+
     private $attributeSetFactory;
     private $attributeSet;
     private $categorySetupFactory;
@@ -44,7 +46,7 @@ class CreateGamesAttributeData implements DataPatchInterface
         $entityTypeId = $categorySetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
         $attributeSetId = $categorySetup->getDefaultAttributeSetId($entityTypeId);
         $data = [
-            'attribute_set_name' => 'Games',
+            'attribute_set_name' => self::ATTRIBUTE_SET_ID,
             'entity_type_id' => $entityTypeId,
             'sort_order' => 200,
         ];
