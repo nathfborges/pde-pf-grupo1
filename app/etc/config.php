@@ -344,6 +344,7 @@ return [
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_IBCBackend' => 1,
+        'Webjump_SetTheme' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
@@ -386,7 +387,7 @@ return [
                 'group_id' => '1',
                 'website_id' => '1',
                 'name' => 'Skate IBC Group',
-                'root_category_id' => '2',
+                'root_category_id' => '20',
                 'default_store_id' => '1',
                 'code' => 'skate_ibc'
             ],
@@ -414,7 +415,7 @@ return [
                 'code' => 'skate_ibc_1',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Skate IBC Store View 1',
+                'name' => 'Skate IBC Store - Português',
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
@@ -423,7 +424,7 @@ return [
                 'code' => 'skate_ibc_2',
                 'website_id' => '1',
                 'group_id' => '1',
-                'name' => 'Skate IBC Store View 2',
+                'name' => 'Skate IBC Store - English',
                 'sort_order' => '1',
                 'is_active' => '1'
             ],
@@ -432,7 +433,7 @@ return [
                 'code' => 'games_ibc',
                 'website_id' => '2',
                 'group_id' => '2',
-                'name' => 'Games IBC Store View',
+                'name' => 'Games IBC Store',
                 'sort_order' => '2',
                 'is_active' => '1'
             ]
@@ -486,6 +487,23 @@ return [
                     ],
                     'secure' => [
                         'base_url' => 'https://ibcgames.localhost/'
+                    ]
+                ]
+            ]
+        ],
+        'stores' => [
+            'skate_ibc_2' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'en_US',
+                        'language' => 'en'
+                    ]
+                ],
+                'currency' => [
+                    'options' => [
+                        'base' => 'USD',
+                        'default' => 'USD',
+                        'allow' => 'USD'
                     ]
                 ]
             ]
