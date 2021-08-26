@@ -1,5 +1,4 @@
 <?php
-
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -56,7 +55,7 @@ class CreateGamesAttributeSet implements DataPatchInterface
         $attributeSet->save();
         $attributeSet->initFromSkeleton($attributeSetId);
         $attributeSet->save();
-
+        $attributeSet->
         $this->moduleDataSetup->getConnection()->endSetup();
     }
     

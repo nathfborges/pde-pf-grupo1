@@ -1,5 +1,4 @@
 <?php
-
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Catalog\Setup\CategorySetupFactory;
@@ -13,7 +12,7 @@ use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Setup\CustomerSetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
-
+use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 
 class CreateSkateAttributeSet implements DataPatchInterface
 {
