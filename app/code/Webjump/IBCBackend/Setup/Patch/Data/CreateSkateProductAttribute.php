@@ -1,6 +1,7 @@
 <?php
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
+use Magento\Catalog\Api\ProductAttributeManagementInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Eav\Setup\EavSetupFactory;
@@ -8,6 +9,8 @@ use Magento\Eav\Setup\EavSetup;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
+use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
+
 
 class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertableInterface
 {
@@ -23,10 +26,28 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
      */
     private $moduleDataSetup;
 
-    public function __construct(EavSetupFactory $eavSetupFactory, ModuleDataSetupInterface $moduleDataSetup)
+    /**
+     * @var ProductAttributeManagementInterface
+     */
+    private $productAttributeManagement;
+
+    /**
+     * @var AttributeSetFactory
+     */
+    private $attributeSetFactory;
+
+
+    public function __construct(
+        EavSetupFactory $eavSetupFactory,
+        ModuleDataSetupInterface $moduleDataSetup,
+        AttributeSetFactory $attributeSetFactory,
+        ProductAttributeManagementInterface $productAttributeManagement
+    )
     {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->moduleDataSetup = $moduleDataSetup;
+        $this->attributeSetFactory = $attributeSetFactory;
+        $this->productAttributeManagement = $productAttributeManagement;
     }
 
     public function apply()
@@ -52,21 +73,12 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             ]
         );
 
-        $eavSetup->updateAttributeSet(
-            Product::ENTITY,
-            'Skate',
-            'General',
-            self::ATTRIBUTE_CODE,
-            301
-        )
-
-        $eavSetup->addAttributeToSet(
-            Product::ENTITY,
-            $eavSetup->getAttributeSetId(Product::ENTITY, CreateSkateAttributeSet::ATTRIBUTE_SET_ID),
-            'General',
-            self::ATTRIBUTE_CODE,
-            301
-        );
+        $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreateSkateAttributeSet::ATTRIBUTE_SET_ID);
+        $attributeSet = $this->attributeSetFactory->create();
+        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+        $sortOrder = 50;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE, $sortOrder);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
@@ -74,7 +86,7 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
     public function revert()
         {
             $this->moduleDataSetup->getConnection()->startSetup();
-            
+
             $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
             $eavSetup->removeAttribute(
                 Product::ENTITY,

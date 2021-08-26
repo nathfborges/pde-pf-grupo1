@@ -1,6 +1,7 @@
 <?php
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
+use Magento\Catalog\Model\Product;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -11,7 +12,7 @@ use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 class CreateGamesAttributeSet implements DataPatchInterface
 {
-    CONST ATTRIBUTE_SET_ID = 'Games'; 
+    CONST ATTRIBUTE_SET_ID = 'Games';
 
     private $attributeSetFactory;
     private $attributeSet;
@@ -31,7 +32,7 @@ class CreateGamesAttributeSet implements DataPatchInterface
         $this->attributeSetFactory = $attributeSetFactory;
         $this->categorySetupFactory = $categorySetupFactory;
     }
-    
+
     /**
      * Create Attribute Set
      * {@inheritdoc}
@@ -42,23 +43,23 @@ class CreateGamesAttributeSet implements DataPatchInterface
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
 
         $attributeSet = $this->attributeSetFactory->create();
-        $entityTypeId = $categorySetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+        $entityTypeId = $categorySetup->getEntityTypeId(Product::ENTITY);
         $attributeSetId = $categorySetup->getDefaultAttributeSetId($entityTypeId);
         $data = [
             'attribute_set_name' => self::ATTRIBUTE_SET_ID,
             'entity_type_id' => $entityTypeId,
             'sort_order' => 200,
         ];
-    
+
         $attributeSet->setData($data);
         $attributeSet->validate();
         $attributeSet->save();
         $attributeSet->initFromSkeleton($attributeSetId);
         $attributeSet->save();
-        $attributeSet->
+
         $this->moduleDataSetup->getConnection()->endSetup();
     }
-    
+
     /**
      * {@inheritdoc}
      */
