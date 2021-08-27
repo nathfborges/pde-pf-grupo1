@@ -13,10 +13,10 @@ use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 
-class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertableInterface
+class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInterface
 {
-    const ATTRIBUTE_CODE_1 = 'teste_1';
-    const ATTRIBUTE_CODE_2 = 'teste_2';
+    const ATTRIBUTE_CODE_1 = 'violence';
+    const ATTRIBUTE_CODE_2 = 'is_mounted';
 
     /**
      * @var EavSetupFactory
@@ -38,7 +38,15 @@ class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertabl
      */
     private $attributeSetFactory;
 
-
+    /**
+     * Constructor of CreateCategoryAttributes class.
+     * @param EavSetupFactory
+     * @param ModuleDataSetupInterface
+     * @param AttributeSetFactory
+     * @param ProductAttributeManagementInterface
+     * 
+     * @return void
+     */
     public function __construct(
         EavSetupFactory $eavSetupFactory,
         ModuleDataSetupInterface $moduleDataSetup,
@@ -51,21 +59,26 @@ class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertabl
         $this->productAttributeManagement = $productAttributeManagement;
     }
 
+    /**
+     * Create the categories attributes.
+     * {@inheritdoc}
+     */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        /** @var EavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             Category::ENTITY,
             self::ATTRIBUTE_CODE_1,
             [
                 'type' => 'text',
-                'label' => 'Teste 2',
+                'label' => 'Os jogos dessa categoria possuem violência?',
                 'input' => 'select',
                 'sort_order' => 100,
                 'source' => '',
-                'global' => 1,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'visible' => true,
                 'required' => false,
                 'user_defined' => false,
@@ -76,24 +89,18 @@ class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertabl
             ]
         );
 
-        // $attributeSetId = $eavSetup->getAttributeSetId(Category::ENTITY, CreateSkateAttributeSet::ATTRIBUTE_SET_ID);
-        // $attributeSet = $this->attributeSetFactory->create();
-        // $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-        // $sortOrder = 50;
-        // $this->productAttributeManagement
-        //     ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_1, $sortOrder);
-
+        /** @var EavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             Category::ENTITY,
             self::ATTRIBUTE_CODE_2,
             [
                 'type' => 'text',
-                'label' => 'Teste 1',
+                'label' => 'Os skates dessa categoria já vem montados?',
                 'input' => 'select',
                 'sort_order' => 100,
                 'source' => '',
-                'global' => 1,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'visible' => true,
                 'required' => false,
                 'user_defined' => false,
@@ -104,17 +111,14 @@ class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertabl
             ]
         );
 
-        // $attributeSetId = $eavSetup->getAttributeSetId(Category::ENTITY, CreateSkateAttributeSet::ATTRIBUTE_SET_ID);
-        // $attributeSet = $this->attributeSetFactory->create();
-        // $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-        // $sortOrder = 50;
-        // $this->productAttributeManagement
-        //     ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrder);
-
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    public function revert()
+    /**
+     * Revert the creation of categories attributes.
+     * {@inheritdoc}
+     */
+    public function revert(): void
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
@@ -133,11 +137,17 @@ class CreateSkateCategoryAttribute implements DataPatchInterface, PatchRevertabl
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDependencies()
     {
         return [

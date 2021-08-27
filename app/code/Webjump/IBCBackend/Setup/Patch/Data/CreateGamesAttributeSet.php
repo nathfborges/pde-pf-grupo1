@@ -1,45 +1,60 @@
 <?php
+
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\InstallDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Catalog\Setup\CategorySetupFactory;
+use Magento\Catalog\Setup\CategorySetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
 
 class CreateGamesAttributeSet implements DataPatchInterface
 {
-    CONST ATTRIBUTE_SET_ID = 'Games';
+    const ATTRIBUTE_SET_ID = 'Games';
 
-    private $attributeSetFactory;
-    private $attributeSet;
-    private $categorySetupFactory;
     /**
-     * @var \Magento\Framework\Setup\ModuleDataSetupInterface
+     * @var AttributeSetFactory
+     */
+    private $attributeSetFactory;
+
+    /**
+     * @var CategorySetupFactory
+     */
+    private $categorySetupFactory;
+
+    /**
+     * @var ModuleDataSetupInterface
      */
     private $moduleDataSetup;
 
     /**
      * AttributeSetData constructor.
-     * @
+     * @param AttributeSetFactory
+     * @param CategorySetupFactory
+     * @param ModuleDataSetupInterface
+     * 
+     * @return void
      */
-    public function __construct(AttributeSetFactory $attributeSetFactory, CategorySetupFactory $categorySetupFactory, ModuleDataSetupInterface $moduleDataSetup)
-    {
-        $this->moduleDataSetup = $moduleDataSetup;
+    public function __construct(
+        AttributeSetFactory $attributeSetFactory,
+        CategorySetupFactory $categorySetupFactory,
+        ModuleDataSetupInterface $moduleDataSetup
+    ) {
         $this->attributeSetFactory = $attributeSetFactory;
         $this->categorySetupFactory = $categorySetupFactory;
+        $this->moduleDataSetup = $moduleDataSetup;
     }
 
     /**
-     * Create Attribute Set
+     * Create Games Attribute Set
      * {@inheritdoc}
      */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
+        /** @var CategorySetup */
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
 
         $attributeSet = $this->attributeSetFactory->create();

@@ -1,4 +1,5 @@
 <?php
+
 namespace Webjump\IBCBackend\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -36,23 +37,37 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
      */
     private $attributeSetFactory;
 
+    /**
+     * CreateGamesProductAtribute contructor.
+     * 
+     * @param EavSetupFactory
+     * @param ModuleDataSetupInterface
+     * @param ProductAttributeManagementInterface
+     * @param AttributeSetFactory
+     * 
+     * @return void
+     */
     public function __construct(
-        EavSetupFactory $eavSetupFactory, 
-        ModuleDataSetupInterface $moduleDataSetup, 
+        EavSetupFactory $eavSetupFactory,
+        ModuleDataSetupInterface $moduleDataSetup,
         ProductAttributeManagementInterface $productAttributeManagement,
         AttributeSetFactory $attributeSetFactory
-        )
-    {
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->moduleDataSetup = $moduleDataSetup;
         $this->productAttributeManagement = $productAttributeManagement;
         $this->attributeSetFactory = $attributeSetFactory;
     }
 
+    /**
+     * Create Games products attributes.
+     * {@inheritdoc}
+     */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        /** @var EavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             Product::ENTITY,
@@ -61,10 +76,10 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'attribute_set' => 'Games',
                 'user_defined' => true,
                 'type' => 'text',
-				'label' => 'Faixa Etária',
-				'input' => 'select',
-				'required' => false,
-				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+                'label' => 'Faixa Etária',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
@@ -78,7 +93,7 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
         $sortOrder = 50;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_1, $sortOrder);
-        
+
         $eavSetup->addAttribute(
             Product::ENTITY,
             self::ATTRIBUTE_CODE_2,
@@ -86,10 +101,10 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'attribute_set' => 'Games',
                 'user_defined' => true,
                 'type' => 'text',
-				'label' => 'É multiplayer?',
-				'input' => 'select',
-				'required' => false,
-				'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+                'label' => 'É multiplayer?',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
@@ -104,28 +119,39 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * Revert the Games attriutes creation.
+     * {@inheritdoc}
+     */
     public function revert()
-        {
-            $this->moduleDataSetup->getConnection()->startSetup();
-            
-            $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
-            $eavSetup->removeAttribute(
-                Product::ENTITY,
-                self::ATTRIBUTE_CODE_1
-            );
-            $eavSetup->removeAttribute(
-                Product::ENTITY,
-                self::ATTRIBUTE_CODE_2
-            );
+    {
+        $this->moduleDataSetup->getConnection()->startSetup();
 
-            $this->moduleDataSetup->getConnection()->endSetup();
-        }
+        /** @var EavSetup */
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $eavSetup->removeAttribute(
+            Product::ENTITY,
+            self::ATTRIBUTE_CODE_1
+        );
+        $eavSetup->removeAttribute(
+            Product::ENTITY,
+            self::ATTRIBUTE_CODE_2
+        );
 
+        $this->moduleDataSetup->getConnection()->endSetup();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDependencies()
     {
         return [

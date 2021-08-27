@@ -1,34 +1,44 @@
 <?xml version="1.0"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <fieldset name="general">
-        <field name="teste_1">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="required" xsi:type="boolean">false</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
-                    <item name="sortOrder" xsi:type="number">333</item>
-                    <item name="dataType" xsi:type="string">string</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="label" translate="true" xsi:type="string">Teste 1 Category Attribute</item>
-                </item>
-            </argument>
+        <field name="violence" formElement="checkbox">
+            <settings>
+                <label translate="true">É violento?</label>
+                <tooltip>
+                    <description translate="true">Os jogos desta categoria possuem violência?</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
         </field>
 
-        <field name="teste_2">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="required" xsi:type="boolean">false</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
-                    <item name="sortOrder" xsi:type="number">334</item>
-                    <item name="dataType" xsi:type="string">string</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="label" translate="true" xsi:type="string">Teste 2 Category Attribute</item>
-                </item>
-            </argument>
+        <field name="is_mounted" formElement="checkbox">
+            <settings>
+                <label translate="true">É montado?</label>
+                <tooltip>
+                    <description translate="true">Os skates dessa categoria já vem montados?</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
         </field>
     </fieldset>
 </form>

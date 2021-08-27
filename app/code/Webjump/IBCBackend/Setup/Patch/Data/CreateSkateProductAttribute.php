@@ -38,7 +38,16 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
      */
     private $attributeSetFactory;
 
-
+    /**
+     * CreateGamesProductAtribute contructor.
+     * 
+     * @param EavSetupFactory
+     * @param ModuleDataSetupInterface
+     * @param ProductAttributeManagementInterface
+     * @param AttributeSetFactory
+     * 
+     * @return void
+     */
     public function __construct(
         EavSetupFactory $eavSetupFactory,
         ModuleDataSetupInterface $moduleDataSetup,
@@ -51,10 +60,15 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
         $this->productAttributeManagement = $productAttributeManagement;
     }
 
+    /**
+     * Create Games products attributes.
+     * {@inheritdoc}
+     */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        /** @var EavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             Product::ENTITY,
@@ -81,7 +95,6 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_1, $sortOrder);
 
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             Product::ENTITY,
             self::ATTRIBUTE_CODE_2,
@@ -100,27 +113,27 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             ]
         );
 
-        $attributeSetId = $eavSetup->getAttributeSetId(Product::ENTITY, CreateSkateAttributeSet::ATTRIBUTE_SET_ID);
-        $attributeSet = $this->attributeSetFactory->create();
-        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-        $sortOrder = 50;
+        $sortOrderTwo = 51;
         $this->productAttributeManagement
-            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrder);
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrderTwo);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * Revert the Skate attriutes creation.
+     * {@inheritdoc}
+     */
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        /** @var EavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::ATTRIBUTE_CODE_1
         );
-
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->removeAttribute(
             Product::ENTITY,
             self::ATTRIBUTE_CODE_2
@@ -129,11 +142,17 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDependencies()
     {
         return [
