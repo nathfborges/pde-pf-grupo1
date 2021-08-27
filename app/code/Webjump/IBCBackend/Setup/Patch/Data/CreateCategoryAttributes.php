@@ -73,9 +73,9 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
             Category::ENTITY,
             self::ATTRIBUTE_CODE_1,
             [
-                'type' => 'text',
+                'type' => 'int',
                 'label' => 'Os jogos dessa categoria possuem violência?',
-                'input' => 'select',
+                'input' => 'boolean',
                 'sort_order' => 100,
                 'source' => '',
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
@@ -84,8 +84,7 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
                 'user_defined' => false,
                 'default' => null,
                 'group' => '',
-                'backend' => '',
-                'option' => ['values' => ['Yes', 'No']]
+                'backend' => ''
             ]
         );
 
@@ -95,9 +94,9 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
             Category::ENTITY,
             self::ATTRIBUTE_CODE_2,
             [
-                'type' => 'text',
+                'type' => 'int',
                 'label' => 'Os skates dessa categoria já vem montados?',
-                'input' => 'select',
+                'input' => 'boolean',
                 'sort_order' => 100,
                 'source' => '',
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
@@ -106,8 +105,7 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
                 'user_defined' => false,
                 'default' => null,
                 'group' => '',
-                'backend' => '',
-                'option' => ['values' => ['Yes', 'No']]
+                'backend' => ''
             ]
         );
 
