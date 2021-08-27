@@ -77,7 +77,8 @@ class InstallSaleRule implements DataPatchInterface
             'description' => '5 Items or more will have 10% discount',
             'websiteids' => ['1', '2'],
             'groups' => ['0', '1', '2', '3'],
-            'active' => '1',
+            'active' => 1,
+            'priority' => 1,
             'condition' => [
                 'attribute' => null,
                 'operator' => null,
@@ -86,9 +87,10 @@ class InstallSaleRule implements DataPatchInterface
                 'condition' => [
                     'attribute' => 'total_qty',
                     'operator' => '>=',
-                    'value' => '5',
+                    'value' => 5,
                 ]
             ],
+            'simple_action' => 'by_percent',
             'discount' => 10
         ];
     }
@@ -112,8 +114,10 @@ class InstallSaleRule implements DataPatchInterface
             ->setWebsiteIds($data['websiteids'])
             ->setCustomerGroupIds($data['groups'])
             ->setIsActive($data['active'])
+            ->setIsActive($data['priority'])
             ->setCondition($setcondition)
-            ->setDiscountAmount($data['discount']);
+            ->setDiscountAmount($data['discount'])
+            ->setSimpleAction($data['simple_action']);
 
         $this->ruleRepository->save($cartRule);
 
