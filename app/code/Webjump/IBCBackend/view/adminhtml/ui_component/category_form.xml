@@ -3,7 +3,7 @@
     <fieldset name="general">
         <field name="violence" formElement="checkbox">
             <settings>
-                <label translate="true">É violento?</label>
+                <label translate="true">É violento? (Games)</label>
                 <tooltip>
                     <description translate="true">Os jogos desta categoria possuem violência?</description>
                 </tooltip>
@@ -23,7 +23,7 @@
 
         <field name="is_mounted" formElement="checkbox">
             <settings>
-                <label translate="true">É montado?</label>
+                <label translate="true">É montado? (Skate)</label>
                 <tooltip>
                     <description translate="true">Os skates dessa categoria já vem montados?</description>
                 </tooltip>

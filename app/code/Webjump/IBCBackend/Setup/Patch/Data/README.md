@@ -25,5 +25,3 @@ This script will run all necessary commands, so run:
 In the database of your store, the table 'patch_list' will contain all datapatch executions.
 Delete all lines referring "WEBJUMP_BACKEND" and execute the commands/script again.
 BE CAREFUL!!!
-
-
