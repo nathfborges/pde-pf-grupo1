@@ -6,6 +6,10 @@
     }
 }
 
+header, .sections.nav-sections{
+    font-family: @robotoBold;
+} 
+
 .panel {
     .header{
         color: @laranjaClaro;
@@ -54,5 +58,23 @@
         &::placeholder{
             color: @branco;
         }
+    }
+}
+
+@media screen and (min-width: 768px){
+    .control input {
+        margin-top: 25px;
+    }
+
+    .control::before {
+        margin-top: 25px !important;
+    }
+
+    .minicart-wrapper {
+        margin-top: 25px;
+    }
+
+    .actions button {
+        margin-top: 25px !important;
     }
 }
