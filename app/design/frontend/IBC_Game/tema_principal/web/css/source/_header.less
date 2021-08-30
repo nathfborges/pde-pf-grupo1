@@ -1,0 +1,86 @@
+.page-header{
+    background-color: @cinzaClaro;
+    .panel.wrapper{
+        background-color: darken(@cinzaClaro, 2);
+        border-color: @cinzaClaro;
+    }
+}
+
+header, .sections.nav-sections{
+    font-family: @montserratBold;
+} 
+
+.panel {
+    .header{
+        color: @roxo;
+        font-family: @montserratBold;
+        .links{
+            a {
+                color: @brancoNeve !important;
+            }
+            @media screen and (min-width: 768px){
+                a{
+                    color: @roxo !important;
+                }
+            }
+        }
+    }
+}
+
+.block-search input {
+    font-family: @montserratRegular;
+    @media screen and (min-width:768px){
+        border-radius: 50px;
+        border: 2px solid @verdeNeon;
+        color: @brancoNeve;
+        background-color: @cinzaClaro;
+        &::placeholder{
+            color: @brancoNeve;
+            font-family: @montserratRegular;
+        }
+    }
+}
+
+.actions button::before{
+    color: @brancoNeve !important;
+}
+
+.action.showcart::before{
+    color:@verdeNeon !important;
+}
+
+.section-item-content {
+    background-color: @roxo;
+    @media screen and (min-width: 768px){
+        border-bottom: 3px solid @verdeNeon;
+    }
+
+    nav {
+        background-color: @roxo;
+        ul{
+            li{
+                a{
+                    color: @brancoNeve !important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+    .control input {
+        margin-top: 35px;
+    }
+
+    .control::before {
+        margin-top: 35px !important;
+    }
+
+    .minicart-wrapper {
+        margin-top: 35px;
+    }
+
+    .actions button {
+        margin-top: 35px !important;
+    }
+}
