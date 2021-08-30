@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © Ulmod. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+
+<div class="um-productslider-widget widget-block-prodslider">
+    <?php
+    $sliderId = $block->getData('slider');
+      echo $block->getLayout()->createBlock("Ulmod\Productslider\Block\Slider\Items")
+                ->setSliderId($sliderId)->toHtml();
+    ?>
+</div>

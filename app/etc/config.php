@@ -339,6 +339,7 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'Sparsh_Banner' => 1,
         'Temando_ShippingRemover' => 1,
+        'Ulmod_Productslider' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidationApi' => 1,
         'Vertex_RequestLoggingApi' => 1,

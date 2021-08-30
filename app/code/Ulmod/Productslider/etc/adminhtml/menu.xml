@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Ulmod. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ulmod_Productslider::productslider" title="Product Slider by Ulmod" module="Ulmod_Productslider" sortOrder="440" 
+		parent="Magento_Backend::content" resource="Ulmod_Productslider::productslider"/>
+        <add id="Ulmod_Productslider::manage_sliders" title="Product sliders" module="Ulmod_Productslider" sortOrder="10" 
+		parent="Ulmod_Productslider::productslider" action="productslider/slider/index" resource="Ulmod_Productslider::manage_sliders"/>
+    </menu>
+</config>
