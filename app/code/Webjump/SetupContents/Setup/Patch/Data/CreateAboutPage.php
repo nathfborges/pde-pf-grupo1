@@ -72,10 +72,8 @@ class CreateAboutPage implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
         
         $content = <<<HTML
-        <style>
-        #html-body [data-pb-style=W3EVYF9]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="W3EVYF9"><div data-content-type="text" data-appearance="default" data-element="main">
-            <p>Somos a maior empresa de skate da América Latina</p>
-        </div></div></div>
+            <style>#html-body [data-pb-style=SM07R2G]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SM07R2G"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somos a maior empresa de skate da América Latina</p></div></div></div>
+            <style>#html-body [data-pb-style=N7KLKU3]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="N7KLKU3"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somo a maior empresa de games da América Latina.</p></div></div></div>    
         HTML;
         
         $pageIdentifier = 'quem_somos';
