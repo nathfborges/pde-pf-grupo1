@@ -1,0 +1,52 @@
+.page-footer {
+    background-color: @preto;
+    font-family: @robotoRegular;
+}
+
+.page-footer a, .page-footer p {
+    color: @laranjaEscuro;
+    text-decoration: none;
+
+    a:hover {
+        color: lighten(@laranjaEscuro, 20);
+    }
+}
+
+.page-footer {
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+    //TODA E QUALQUER ALTERAÇÃO DO FOOTER PARA DESKTOP
+    .footer-content {
+        box-sizing: border-box;
+        max-width: 1280px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .last-column {
+        text-align: right;
+    }
+}
+@media screen and (max-width: 767px) {
+    //TODA E QUALQUER ALTERAÇÃO DO FOOTER PARA MOBILE
+    .footer-content {
+        margin: 50px 0;
+        padding: 0 15px;
+    }
+
+    .pagebuilder-column {
+        padding: 10px 0;
+
+        .last-column {
+            text-align: left;
+
+        }
+    }
+
+    figure {
+        text-align: center !important;
+    }
+
+}
