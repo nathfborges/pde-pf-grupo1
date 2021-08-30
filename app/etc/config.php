@@ -338,7 +338,9 @@ return [
         'Klarna_KpGraphQl' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
+        'Sparsh_Banner' => 1,
         'Temando_ShippingRemover' => 1,
+        'Ulmod_Productslider' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidationApi' => 1,
         'Vertex_RequestLoggingApi' => 1,
@@ -346,6 +348,7 @@ return [
         'Vertex_AddressValidation' => 1,
         'Webjump_IBCBackend' => 1,
         'Webjump_SetTheme' => 1,
+        'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
