@@ -15,7 +15,8 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
-
+use Magento\Theme\Model\ThemeFactory;
+use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
 
 /**
  * Class RegisterThemes
@@ -28,34 +29,57 @@ class RegisterThemesSkate2 implements DataPatchInterface
      */
     private $configInterface;
 
+    /**
+     * @var StoreManagerInterface
+     */
     private StoreManagerInterface $storeManager;
+
+    /**
+     * @var ThemeFactory
+     */
+    private $themeFactory;
+
+    /**
+     * @var ThemeResourceModel
+     */
+    private $themeResourceModel;
+
     /**
      * RegisterThemes constructor.
      * @param \Magento\Framework\Setup\ModuleDataSetupInterface $moduleDataSetup
      * @param Registration $themeRegistration
+     * @param ThemeFactory
+     * @param ThemeResourceModel
      */
     public function __construct(
         StoreManagerInterface $storeManager,
-        ConfigInterface $configInterface
-    ) {
+        ConfigInterface $configInterface,
+        ThemeFactory $themeFactory,
+        ThemeResourceModel $themeResourceModel
 
+    ) {
         $this->storeManager = $storeManager;
         $this->configInterface = $configInterface;
+        $this->themeFactory = $themeFactory;
+        $this->themeResourceModel = $themeResourceModel;
     }
+
     /**
      * {@inheritdoc}
      */
     public function apply()
     {
-
+        $ibcSkateTheme = $this->themeFactory->create();
+        $this->themeResourceModel->load($ibcSkateTheme, 'IBC_Skate/tema_principal', 'theme_path');
         $ibcSkate2Id = $this->storeManager->getStore('skate_ibc_2')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
-            4,
+            $ibcSkateTheme->getThemeId(),
             ScopeInterface::SCOPE_STORES,
             $ibcSkate2Id
         );
     }
+
     /**
      * {@inheritdoc}
      */
@@ -63,6 +87,7 @@ class RegisterThemesSkate2 implements DataPatchInterface
     {
         return [];
     }
+    
     /**
      * {@inheritdoc}
      */
