@@ -345,6 +345,7 @@ return [
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_IBCBackend' => 1,
+        'Webjump_SetFooter' => 1,
         'Webjump_SetTheme' => 1,
         'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
