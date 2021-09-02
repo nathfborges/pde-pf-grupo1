@@ -85,11 +85,14 @@ class InfoGames implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
+
+        $games_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
+
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['3'])
+            ->setStores([$games_store_id])
             ->setContent($content);
     }
     
@@ -106,6 +109,8 @@ class InfoGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [ ConfigureStores::class ];
+        return [
+            ConfigureStores::class
+        ];
     }
 }
