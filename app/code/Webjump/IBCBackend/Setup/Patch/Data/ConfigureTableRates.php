@@ -7,6 +7,7 @@ use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\File\Csv;
 use Magento\Setup\Module\Setup;
 use DomainException;
+use Magento\Store\Api\WebsiteRepositoryInterface;
 
 class ConfigureTableRates implements DataPatchInterface
 {
@@ -34,6 +35,11 @@ class ConfigureTableRates implements DataPatchInterface
     private $setup;
 
     /**
+     * @var WebsiteRepositoryInterface
+     */
+    private $websiteRepositoryInterface;
+
+    /**
      * ConfigureTableRates Constructor
      * 
      * @param ModuleDataSetupInterface
@@ -45,13 +51,15 @@ class ConfigureTableRates implements DataPatchInterface
         ModuleDataSetupInterface $moduleDataSetup,
         ConfigInterface $configInterface,
         Csv $csvImport,
-        Setup $setup
+        Setup $setup,
+        WebsiteRepositoryInterface $websiteRepositoryInterface
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->configInterface = $configInterface;
         $this->csvImport = $csvImport;
         $this->setup = $setup;
+        $this->websiteRepositoryInterface = $websiteRepositoryInterface;
     }
 
     /**
@@ -123,6 +131,13 @@ class ConfigureTableRates implements DataPatchInterface
         $columns = $csv[0];
         unset($csv[0]);
         $csv = array_values($csv);
+
+        $i = 0;
+        foreach ($csv as $value) {
+            $csv[$i][0] = $this->websiteRepositoryInterface->get($value[0])->getId();
+            $i++;
+        }
+
         $this->setup->getConnection()->insertArray(self::TABLE_NAME, $columns, $csv);
     }
 
