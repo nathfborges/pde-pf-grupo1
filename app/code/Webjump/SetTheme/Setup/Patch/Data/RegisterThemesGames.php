@@ -15,6 +15,7 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ThemeFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Class RegisterThemes
@@ -78,7 +79,7 @@ class RegisterThemesGames implements DataPatchInterface
 
         $ibcGamesTheme = $this->themeFactory->create();
         $this->themeResourceModel->load($ibcGamesTheme, 'IBC_Game/tema_principal', 'theme_path');
-        $ibcGamesId = $this->storeManager->getStore('games_ibc')->getId();
+        $ibcGamesId = $this->storeManager->getStore(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
             $ibcGamesTheme->getThemeId(),

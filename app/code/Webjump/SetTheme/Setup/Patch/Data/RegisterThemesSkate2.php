@@ -15,6 +15,7 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ThemeFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Class RegisterThemes
@@ -79,7 +80,7 @@ class RegisterThemesSkate2 implements DataPatchInterface
 
         $ibcSkateTheme = $this->themeFactory->create();
         $this->themeResourceModel->load($ibcSkateTheme, 'IBC_Skate/tema_principal', 'theme_path');
-        $ibcSkate2Id = $this->storeManager->getStore('skate_ibc_2')->getId();
+        $ibcSkate2Id = $this->storeManager->getStore(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
             $ibcSkateTheme->getThemeId(),
