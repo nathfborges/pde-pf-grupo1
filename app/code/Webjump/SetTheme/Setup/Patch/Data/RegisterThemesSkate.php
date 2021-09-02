@@ -8,14 +8,12 @@
 namespace Webjump\SetTheme\Setup\Patch\Data;
 
 use Magento\Theme\Model\Theme\Registration;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Theme\Model\ThemeFactory;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
 
 /**
@@ -24,6 +22,11 @@ use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
  */
 class RegisterThemesSkate implements DataPatchInterface
 {
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    private $moduleDataSetupInterface;
+
     /**
      * @var ConfigInterface
      */
@@ -46,18 +49,21 @@ class RegisterThemesSkate implements DataPatchInterface
 
     /**
      * RegisterThemes constructor.
-     * @param \Magento\Framework\Setup\ModuleDataSetupInterface $moduleDataSetup
-     * @param Registration $themeRegistration
+     * @param ModuleDataSetupInterface
+     * @param StoreManagerInterface
+     * @param Registration
      * @param ThemeFactory
      * @param ThemeResourceModel
      */
     public function __construct(
+        ModuleDataSetupInterface $moduleDataSetupInterface,
         StoreManagerInterface $storeManager,
         ConfigInterface $configInterface,
         ThemeFactory $themeFactory,
         ThemeResourceModel $themeResourceModel
 
     ) {
+        $this->moduleDataSetupInterface = $moduleDataSetupInterface;
         $this->storeManager = $storeManager;
         $this->configInterface = $configInterface;
         $this->themeFactory = $themeFactory;
@@ -69,6 +75,8 @@ class RegisterThemesSkate implements DataPatchInterface
      */
     public function apply()
     {
+        $this->moduleDataSetupInterface->getConnection()->startSetup();
+        
         $ibcSkateTheme = $this->themeFactory->create();
         $this->themeResourceModel->load($ibcSkateTheme, 'IBC_Skate/tema_principal', 'theme_path');
         $ibcSkateId = $this->storeManager->getStore('skate_ibc_1')->getId();
@@ -78,6 +86,8 @@ class RegisterThemesSkate implements DataPatchInterface
             ScopeInterface::SCOPE_STORES,
             $ibcSkateId
         );
+
+        $this->moduleDataSetupInterface->getConnection()->endSetup();
     }
     
     /**
