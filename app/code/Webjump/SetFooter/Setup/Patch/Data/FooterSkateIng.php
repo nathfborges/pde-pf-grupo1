@@ -19,27 +19,27 @@ class FooterSkateIng implements DataPatchInterface
      * @var string IDENTIFIER
      */
     const IDENTIFIER = 'skate-footer-ing';
-
+    
     /**
      * @var string TITLE
      */
     const TITLE = 'Footer Skate Ing';
-
+    
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
-
+    
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
-
+    
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
+    
     /**
      * @var StoreRepositoryInterface $storeRepositoryInterface
      */
@@ -92,6 +92,7 @@ class FooterSkateIng implements DataPatchInterface
             ->setStores([$skate_store_2_id])
             ->setContent($content);
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -99,6 +100,7 @@ class FooterSkateIng implements DataPatchInterface
     {
         return [];
     }
+
     /**
      * {@inheritdoc}
      */
