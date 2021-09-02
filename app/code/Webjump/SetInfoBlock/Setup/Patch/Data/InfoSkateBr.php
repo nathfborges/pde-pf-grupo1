@@ -16,38 +16,48 @@ use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
  */
 class InfoSkateBr implements DataPatchInterface
 {
+    
     /**
      * @var string IDENTIFIER
      */
     const IDENTIFIER = 'info-skate-br';
+    
     /**
      * @var string TITLE
      */
     const TITLE = 'Information Skate Br';
+    
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
+    
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
+    
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
-    private $storeRepositoryInterface;
+    
     /**
+     * @var StoreRepositoryInterface $storeRepositoryInterface
+     */
+    private $storeRepositoryInterface;
+    
+    /**
+     * @param StoreRepositoryInterface $storeRepositoryInterface
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
      */
     public function __construct(
-        StoreRepositoryInterface $storeRepositoryInterface,
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
@@ -75,14 +85,15 @@ class InfoSkateBr implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-        $skateBr_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
+        $skate_store_1_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$skateBr_store_id])
+            ->setStores([$skate_store_1_id])
             ->setContent($content);
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -90,6 +101,7 @@ class InfoSkateBr implements DataPatchInterface
     {
         return [];
     }
+    
     /**
      * {@inheritdoc}
      */

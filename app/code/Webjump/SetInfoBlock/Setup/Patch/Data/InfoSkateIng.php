@@ -7,7 +7,6 @@ namespace Webjump\SetInfoBlock\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
-use Magento\Store\Model\Store;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
@@ -76,14 +75,15 @@ class InfoSkateIng implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-        $skateIng_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
+        $skate_store_2_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$skateIng_store_id])
+            ->setStores([$skate_store_2_id])
             ->setContent($content);
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -91,6 +91,7 @@ class InfoSkateIng implements DataPatchInterface
     {
         return [];
     }
+    
     /**
      * {@inheritdoc}
      */
