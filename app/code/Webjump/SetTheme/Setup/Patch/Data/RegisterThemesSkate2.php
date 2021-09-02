@@ -8,14 +8,12 @@
 namespace Webjump\SetTheme\Setup\Patch\Data;
 
 use Magento\Theme\Model\Theme\Registration;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
-
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Class RegisterThemes
@@ -48,7 +46,7 @@ class RegisterThemesSkate2 implements DataPatchInterface
     public function apply()
     {
 
-        $ibcSkate2Id = $this->storeManager->getStore('skate_ibc_2')->getId();
+        $ibcSkate2Id = $this->storeManager->getStore(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
             4,
@@ -61,7 +59,9 @@ class RegisterThemesSkate2 implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
     /**
      * {@inheritdoc}
