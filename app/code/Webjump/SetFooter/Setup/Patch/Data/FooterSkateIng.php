@@ -7,6 +7,7 @@ namespace Webjump\SetFooter\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\Store;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -69,11 +70,13 @@ class FooterSkateIng implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
+        $skate_store_2_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
+
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['2'])
+            ->setStores([$skate_store_2_id])
             ->setContent($content);
     }
     /**
@@ -88,6 +91,8 @@ class FooterSkateIng implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 }
