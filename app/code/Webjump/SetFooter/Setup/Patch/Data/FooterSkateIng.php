@@ -7,7 +7,6 @@ namespace Webjump\SetFooter\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
-use Magento\Store\Model\Store;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
@@ -50,6 +49,7 @@ class FooterSkateIng implements DataPatchInterface
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
