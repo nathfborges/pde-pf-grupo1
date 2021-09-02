@@ -35,12 +35,15 @@ class InfoSkateIng implements DataPatchInterface
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
+    /**
+     * @var StoreRepositoryInterface $storeRepositoryInterface
+     */
     private $storeRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface $storeRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
@@ -97,6 +100,8 @@ class InfoSkateIng implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [ ConfigureStores::class ];
+        return [
+            ConfigureStores::class
+        ];
     }
 }

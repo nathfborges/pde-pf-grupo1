@@ -47,10 +47,10 @@ class InfoSkateBr implements DataPatchInterface
     private $storeRepositoryInterface;
     
     /**
-     * @param StoreRepositoryInterface $storeRepositoryInterface
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface $storeRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
