@@ -94,7 +94,9 @@ class RegisterThemesGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
     
     /**

@@ -95,7 +95,9 @@ class RegisterThemesSkate2 implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
     
     /**
