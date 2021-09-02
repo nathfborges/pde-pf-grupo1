@@ -89,7 +89,11 @@ class FooterSkate implements DataPatchInterface
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
+<<<<<<< HEAD
+            ->setStores(['1'])
+=======
             ->setStores([$skate_store_1_id, $skate_store_2_id])
+>>>>>>> 5d07aa4569c22e2f4c3e1a2691b49fa93c3f2b22
             ->setContent($content);
     }
     /**
