@@ -345,11 +345,171 @@ return [
         'Vertex_RequestLogging' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_IBCBackend' => 1,
-        'Webjump_SetBannerCategory' => 1,
         'Webjump_SetFooter' => 1,
-        'Webjump_SetInfoBlock' => 1,
         'Webjump_SetTheme' => 1,
         'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
+    ],
+    'scopes' => [
+        'websites' => [
+            'admin' => [
+                'website_id' => '0',
+                'code' => 'admin',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'default_group_id' => '0',
+                'is_default' => '0'
+            ],
+            'skate_ibc' => [
+                'website_id' => '1',
+                'code' => 'skate_ibc',
+                'name' => 'Skate IBC Website',
+                'sort_order' => '1',
+                'default_group_id' => '1',
+                'is_default' => '1'
+            ],
+            'games_ibc' => [
+                'website_id' => '2',
+                'code' => 'games_ibc',
+                'name' => 'Games IBC Website',
+                'sort_order' => '2',
+                'default_group_id' => '2',
+                'is_default' => '0'
+            ]
+        ],
+        'groups' => [
+            [
+                'group_id' => '0',
+                'website_id' => '0',
+                'name' => 'Default',
+                'root_category_id' => '0',
+                'default_store_id' => '2',
+                'code' => 'default'
+            ],
+            [
+                'group_id' => '1',
+                'website_id' => '1',
+                'name' => 'Skate IBC Group',
+                'root_category_id' => '20',
+                'default_store_id' => '1',
+                'code' => 'skate_ibc'
+            ],
+            [
+                'group_id' => '2',
+                'website_id' => '2',
+                'name' => 'Games IBC Group',
+                'root_category_id' => '2',
+                'default_store_id' => '3',
+                'code' => 'games_ibc'
+            ]
+        ],
+        'stores' => [
+            'admin' => [
+                'store_id' => '0',
+                'code' => 'admin',
+                'website_id' => '0',
+                'group_id' => '0',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'skate_ibc_1' => [
+                'store_id' => '1',
+                'code' => 'skate_ibc_1',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Skate IBC Store - Português',
+                'sort_order' => '1',
+                'is_active' => '1'
+            ],
+            'skate_ibc_2' => [
+                'store_id' => '2',
+                'code' => 'skate_ibc_2',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Skate IBC Store - English',
+                'sort_order' => '1',
+                'is_active' => '1'
+            ],
+            'games_ibc' => [
+                'store_id' => '3',
+                'code' => 'games_ibc',
+                'website_id' => '2',
+                'group_id' => '2',
+                'name' => 'Games IBC Store',
+                'sort_order' => '2',
+                'is_active' => '1'
+            ]
+        ]
+    ],
+    'themes' => [
+        'frontend/Magento/blank' => [
+            'parent_id' => null,
+            'theme_path' => 'Magento/blank',
+            'theme_title' => 'Magento Blank',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'Magento/blank'
+        ],
+        'frontend/Magento/luma' => [
+            'parent_id' => 'Magento/blank',
+            'theme_path' => 'Magento/luma',
+            'theme_title' => 'Magento Luma',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'Magento/luma'
+        ],
+        'adminhtml/Magento/backend' => [
+            'parent_id' => null,
+            'theme_path' => 'Magento/backend',
+            'theme_title' => 'Magento 2 backend',
+            'is_featured' => '0',
+            'area' => 'adminhtml',
+            'type' => '0',
+            'code' => 'Magento/backend'
+        ]
+    ],
+    'system' => [
+        'websites' => [
+            'skate_ibc' => [
+                'web' => [
+                    'unsecure' => [
+                        'base_url' => 'http://ibcskate.localhost/'
+                    ],
+                    'secure' => [
+                        'base_url' => 'https://ibcskate.localhost/'
+                    ]
+                ]
+            ],
+            'games_ibc' => [
+                'web' => [
+                    'unsecure' => [
+                        'base_url' => 'http://ibcgames.localhost/'
+                    ],
+                    'secure' => [
+                        'base_url' => 'https://ibcgames.localhost/'
+                    ]
+                ]
+            ]
+        ],
+        'stores' => [
+            'skate_ibc_2' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'en_US',
+                        'language' => 'en'
+                    ]
+                ],
+                'currency' => [
+                    'options' => [
+                        'base' => 'USD',
+                        'default' => 'USD',
+                        'allow' => 'USD'
+                    ]
+                ]
+            ]
+        ]
     ]
 ];

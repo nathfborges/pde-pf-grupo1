@@ -8,14 +8,14 @@
 namespace Webjump\SetTheme\Setup\Patch\Data;
 
 use Magento\Theme\Model\Theme\Registration;
+use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
-use Magento\Theme\Model\ThemeFactory;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Theme\Model\ResourceModel\Theme as ThemeResourceModel;
-use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
+
 
 /**
  * Class RegisterThemes
@@ -24,82 +24,45 @@ use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 class RegisterThemesGames implements DataPatchInterface
 {
     /**
-     * @var ModuleDataSetupInterface
-     */
-    private $moduleDataSetupInterface;
-
-    /**
      * @var ConfigInterface
      */
     private $configInterface;
 
-    /**
-     * @var StoreManagerInterface
-     */
     private StoreManagerInterface $storeManager;
-
-    /**
-     * @var ThemeFactory
-     */
-    private $themeFactory;
-
-    /**
-     * @var ThemeResourceModel
-     */
-    private $themeResourceModel;
-
     /**
      * RegisterThemes constructor.
-     * @param ModuleDataSetupInterface
-     * @param StoreManagerInterface
-     * @param Registration
-     * @param ThemeFactory
-     * @param ThemeResourceModel
+     * @param \Magento\Framework\Setup\ModuleDataSetupInterface $moduleDataSetup
+     * @param Registration $themeRegistration
      */
     public function __construct(
-        ModuleDataSetupInterface $moduleDataSetupInterface,
         StoreManagerInterface $storeManager,
-        ConfigInterface $configInterface,
-        ThemeFactory $themeFactory,
-        ThemeResourceModel $themeResourceModel
-
+        ConfigInterface $configInterface
     ) {
-        $this->moduleDataSetupInterface = $moduleDataSetupInterface;
+
         $this->storeManager = $storeManager;
         $this->configInterface = $configInterface;
-        $this->themeFactory = $themeFactory;
-        $this->themeResourceModel = $themeResourceModel;
     }
     /**
      * {@inheritdoc}
      */
     public function apply()
     {
-        $this->moduleDataSetupInterface->getConnection()->startSetup();
 
-        $ibcGamesTheme = $this->themeFactory->create();
-        $this->themeResourceModel->load($ibcGamesTheme, 'IBC_Game/tema_principal', 'theme_path');
-        $ibcGamesId = $this->storeManager->getStore(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
+        $ibcGamesId = $this->storeManager->getStore('games_ibc')->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
-            $ibcGamesTheme->getThemeId(),
+            5,
             ScopeInterface::SCOPE_STORES,
             $ibcGamesId
         );
-
-        $this->moduleDataSetupInterface->getConnection()->endSetup();
     }
-
     /**
      * {@inheritdoc}
      */
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
-    
     /**
      * {@inheritdoc}
      */
