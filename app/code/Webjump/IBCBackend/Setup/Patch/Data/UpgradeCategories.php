@@ -57,21 +57,25 @@ class UpgradeCategories implements DataPatchInterface
         $categoriaSkateCom = $this->categoryRepository->get(40, $skate_store_id);
         $categoriaSkateCom->setStoreId($skate_store_id)
             ->setName('Complete Skateboards')
+            ->setUrlKey('complete-skateboards')
             ->save();
 
         $categoriaRodas = $this->categoryRepository->get(50, $skate_store_id);
         $categoriaRodas->setStoreId($skate_store_id)
             ->setName('Wheels')
+            ->setUrlKey('wheels')
             ->save();
 
         $categoriaLixas= $this->categoryRepository->get(70, $skate_store_id);
         $categoriaLixas->setStoreId($skate_store_id)
             ->setName('Sandpaper')
+            ->setUrlKey('sandpaper')
             ->save();
 
         $categoriaAcessorios= $this->categoryRepository->get(90, $skate_store_id);
         $categoriaAcessorios->setStoreId($skate_store_id)
             ->setName('Acessories')
+            ->setUrlKey('acessories')
             ->save();
 
         $this->moduleDataSetup->getConnection()->endSetup();
