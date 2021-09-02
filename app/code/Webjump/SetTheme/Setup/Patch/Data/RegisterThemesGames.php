@@ -8,14 +8,12 @@
 namespace Webjump\SetTheme\Setup\Patch\Data;
 
 use Magento\Theme\Model\Theme\Registration;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
-
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Class RegisterThemes
@@ -48,7 +46,7 @@ class RegisterThemesGames implements DataPatchInterface
     public function apply()
     {
 
-        $ibcGamesId = $this->storeManager->getStore('games_ibc')->getId();
+        $ibcGamesId = $this->storeManager->getStore(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
             5,
@@ -61,7 +59,9 @@ class RegisterThemesGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
     /**
      * {@inheritdoc}
