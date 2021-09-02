@@ -54,7 +54,8 @@ class InfoGames implements DataPatchInterface
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
@@ -105,6 +106,6 @@ class InfoGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [ ConfigureStores::class ];
     }
 }
