@@ -1,0 +1,39 @@
+.product-info-main {
+    .block.info-content {
+        margin: 0;
+    }
+    .text-parcel-block {
+        font-family: @montserratRegular;
+        margin: 0;
+    }
+    .title-parcel-block {
+        font-family: @montserratBold;
+        margin: 0;
+    }
+    .parcel-block {
+        font-size: 0.85em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: @verdeNeon;
+        color: white;
+        border-radius: 2px;
+        border-bottom: 2px @verdeNeon;
+        height: 40px;
+        width: 40vw;
+        padding: 5px 10px;
+        text-align: left;
+        transition: 0.3s all;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        
+        &:hover {
+            transform: scale(1.03);     
+        }
+
+        @media screen and(min-width: 768px) {
+            width: 15vw;
+        }
+    }
+}
