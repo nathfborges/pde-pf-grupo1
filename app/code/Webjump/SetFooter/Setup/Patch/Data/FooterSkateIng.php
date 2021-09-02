@@ -6,7 +6,7 @@ namespace Webjump\SetFooter\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Model\Store;
+use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
@@ -19,35 +19,48 @@ class FooterSkateIng implements DataPatchInterface
      * @var string IDENTIFIER
      */
     const IDENTIFIER = 'skate-footer-ing';
+
     /**
      * @var string TITLE
      */
     const TITLE = 'Footer Skate Ing';
+
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
+
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
+
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
+
+    /**
+     * @var StoreRepositoryInterface $storeRepositoryInterface
+     */
+    private $storeRepositoryInterface;
+
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
+        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
