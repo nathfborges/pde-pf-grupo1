@@ -6,8 +6,7 @@ namespace Webjump\SetFooter\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Api\StoreRepositoryInterface;
-use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
+use Magento\Store\Model\Store;
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -19,48 +18,35 @@ class FooterSkate implements DataPatchInterface
      * @var string IDENTIFIER
      */
     const IDENTIFIER = 'skate-footer';
-
     /**
      * @var string TITLE
      */
     const TITLE = 'Footer Skate';
-
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
-
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
-
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-    
-    /**
-     * @var StoreRepositoryInterface $storeRepositoryInterface
-     */
-    private $storeRepositoryInterface;
-    
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
-     * @param StoreRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
-        StoreRepositoryInterface $storeRepositoryInterface
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
-        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
@@ -83,13 +69,11 @@ class FooterSkate implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-        $skate_store_1_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
-
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$skate_store_1_id])
+            ->setStores(['1', '2'])
             ->setContent($content);
     }
     /**
@@ -104,8 +88,6 @@ class FooterSkate implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
 }

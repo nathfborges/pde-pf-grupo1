@@ -7,9 +7,7 @@ use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
-use Magento\Store\Api\GroupRepositoryInterface;
-use Magento\Store\Api\StoreRepositoryInterface;
-use Magento\Store\Model\ResourceModel\Group;
+use Magento\Store\Model\Group;
 use Magento\Store\Model\GroupFactory;
 
 
@@ -38,10 +36,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      */
     private $groupResourceModel;
 
-    /**
-     * @var StoreRepositoryInterface
-     */
-    private $storeRepositoryInterface;
 
     /**
      * PatchInitial constructor.
@@ -49,21 +43,18 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
      * @param CategorySetupFactory $categorySetup
      * @param GroupFactory $groupFactory
      * @param Group $group
-     * @param StoreRepositoryInterface $storeRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         CategorySetupFactory     $categorySetup,
         GroupFactory             $groupFactory,
-        Group                   $group,
-        StoreRepositoryInterface $storeRepositoryInterface
+        Group                   $group
     )
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->categorySetupFactory = $categorySetup;
         $this->groupFactory = $groupFactory;
         $this->groupResourceModel = $group;
-        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
 
     public function apply()
@@ -74,9 +65,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
         $rootCategoryId = Category::TREE_ROOT_ID;
-
-        $skate_store_view_1_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
-        $games_store_view_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
 
 
         // Create Root Catalog Node
@@ -95,7 +83,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $categoryJogos = $categorySetup->createCategory();
         $categoryJogos->load(2)
             ->setId(2)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setName('Jogos')
             ->setParentId($rootCategoryId)
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId())
@@ -108,7 +96,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category = $categorySetup->createCategory();
         $category->load(3)
             ->setId(3)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setParentId($categoryJogos->getId())
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 3)
             ->setName('Luta')
@@ -121,7 +109,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category = $categorySetup->createCategory();
         $category->load(4)
             ->setId(4)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setParentId($categoryJogos->getId())
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 4)
             ->setName('Simulação')
@@ -134,7 +122,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category = $categorySetup->createCategory();
         $category->load(5)
             ->setId(5)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setParentId($categoryJogos->getId())
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 5)
             ->setName('Aventura')
@@ -148,7 +136,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(6)
             ->setParentId($categoryJogos->getId())
             ->setId(6)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 6)
             ->setName('Terror')
             ->setDisplayMode('PRODUCTS')
@@ -160,7 +148,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(7)
             ->setParentId($categoryJogos->getId())
             ->setId(7)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 7)
             ->setName('Esporte')
             ->setDisplayMode('PRODUCTS')
@@ -173,8 +161,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         $category->load(9)
             ->setParentId($categoryJogos->getId())
             ->setId(9)
-            ->setStoreId($games_store_view_id)
+            ->setStoreId(3)
             ->setPath($rootCategoryId . '/' . $categoryJogos->getId() . '/' . 9)
+            ->setStoreId(3)
             ->setName('Estratégia')
             ->setDisplayMode('PRODUCTS')
             ->setIsActive(1)
@@ -185,7 +174,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
         // Create Skate Category
         $categorySkate = $categorySetup->createCategory();
         $categorySkate->load(20)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(20)
             ->setParentId($rootCategoryId)
             ->setPath($rootCategoryId . '/' . $categorySkate->getId())
@@ -199,7 +188,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categorySkatesCom = $categorySetup->createCategory();
         $categorySkatesCom->load(40)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(40)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 40)
@@ -212,7 +201,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categoryRodas = $categorySetup->createCategory();
         $categoryRodas->load(50)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(50)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 50)
@@ -225,7 +214,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categoryShapes = $categorySetup->createCategory();
         $categoryShapes->load(60)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(60)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 60)
@@ -238,7 +227,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categoryLixas = $categorySetup->createCategory();
         $categoryLixas->load(70)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(70)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 70)
@@ -251,7 +240,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categoryTrucks = $categorySetup->createCategory();
         $categoryTrucks->load(80)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(80)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 80)
@@ -264,7 +253,7 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
         $categoryAcessorios = $categorySetup->createCategory();
         $categoryAcessorios->load(90)
-            ->setStoreId($skate_store_view_1_id)
+            ->setStoreId(1)
             ->setId(90)
             ->setParentId($categorySkate->getId())
             ->setPath($rootCategoryId . '/' . $categorySkate->getId() . '/' . 90)
@@ -276,11 +265,9 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
             ->save();
 
         $group = $this->groupFactory->create();
-        $this->groupResourceModel->load($group, ConfigureStores::IBC_SKATE_GROUP_CODE, 'code');
-        
-        $group->setRootCategoryId($categorySkate->getId());
-
-        $this->groupResourceModel->save($group);
+        $group->load('1')
+            ->setRootCategoryId(20)
+            ->save($group);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
@@ -300,8 +287,6 @@ class InstallCategories implements DataPatchInterface, PatchVersionInterface
 
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
 }
