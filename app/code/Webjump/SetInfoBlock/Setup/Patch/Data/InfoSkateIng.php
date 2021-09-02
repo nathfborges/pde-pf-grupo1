@@ -6,12 +6,8 @@ namespace Webjump\SetInfoBlock\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-<<<<<<< HEAD
 use Magento\Store\Api\StoreRepositoryInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
-=======
-use Magento\Store\Model\Store;
->>>>>>> e1c3e49cdf02b46a2cb7d2878596831346f22313
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -39,6 +35,8 @@ class InfoSkateIng implements DataPatchInterface
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
+
+    private $storeRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
@@ -47,11 +45,13 @@ class InfoSkateIng implements DataPatchInterface
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
+        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
@@ -75,19 +75,12 @@ class InfoSkateIng implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-<<<<<<< HEAD
         $skate_store_2_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
-=======
->>>>>>> e1c3e49cdf02b46a2cb7d2878596831346f22313
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-<<<<<<< HEAD
             ->setStores([$skate_store_2_id])
-=======
-            ->setStores(['2'])
->>>>>>> e1c3e49cdf02b46a2cb7d2878596831346f22313
             ->setContent($content);
     }
     
@@ -104,6 +97,6 @@ class InfoSkateIng implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [ ConfigureStores::class ];
     }
 }
