@@ -7,8 +7,6 @@ namespace Webjump\SetInfoBlock\Setup\Patch\Data;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\Store;
-use Magento\Store\Api\StoreRepositoryInterface;
-use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -36,8 +34,6 @@ class InfoGames implements DataPatchInterface
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
-    private $storeRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
@@ -46,10 +42,8 @@ class InfoGames implements DataPatchInterface
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
-        StoreRepositoryInterface $storeRepositoryInterface
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
     ) {
-        $this->storeRepositoryInterface = $storeRepositoryInterface;
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
@@ -77,12 +71,11 @@ class InfoGames implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-        $games_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$games_store_id])
+            ->setStores(['3'])
             ->setContent($content);
     }
     /**
@@ -97,8 +90,6 @@ class InfoGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
 }

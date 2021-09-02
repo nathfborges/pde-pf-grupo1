@@ -6,9 +6,7 @@ namespace Webjump\SetInfoBlock\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Model\Store;
-use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Patch to apply creation of the block Charges and fees
@@ -36,15 +34,12 @@ class InfoSkateBr implements DataPatchInterface
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
-
-    private $storeRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
      */
     public function __construct(
-        StoreRepositoryInterface $storeRepositoryInterface,
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
         \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
@@ -52,7 +47,6 @@ class InfoSkateBr implements DataPatchInterface
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
-        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
@@ -75,12 +69,11 @@ class InfoSkateBr implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
-        $skateBr_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores([$skateBr_store_id])
+            ->setStores(['1'])
             ->setContent($content);
     }
     /**
@@ -95,8 +88,6 @@ class InfoSkateBr implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
 }
