@@ -11,6 +11,8 @@ use Magento\SalesRule\Api\Data\ConditionInterface;
 use Magento\SalesRule\Model\Data\Condition;
 use Magento\SalesRule\Model\Rule\Condition\Address;
 use Magento\Rule\Model\Condition\Combine;
+use Magento\Store\Api\WebsiteRepositoryInterface;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 class InstallSaleRule implements DataPatchInterface
 {
@@ -34,16 +36,23 @@ class InstallSaleRule implements DataPatchInterface
      */
     private $conditionFactory;
 
+    /**
+     * @var WebsiteRepositoryInterface
+     */
+    private $websiteRepositoryInterface;
+
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         RuleInterfaceFactory $ruleFactory,
         RuleRepositoryInterface $ruleRepository,
-        ConditionInterfaceFactory $conditionFactory
+        ConditionInterfaceFactory $conditionFactory,
+        WebsiteRepositoryInterface $websiteRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->ruleRepository = $ruleRepository;
         $this->conditionFactory = $conditionFactory;
+        $this->websiteRepositoryInterface = $websiteRepositoryInterface;
     }
 
     public function generateCondition(array $data)
@@ -75,7 +84,6 @@ class InstallSaleRule implements DataPatchInterface
         return [
             'name' => '5 More Items - 10% Discount',
             'description' => '5 Items or more will have 10% discount',
-            'websiteids' => ['1', '2'],
             'groups' => ['0', '1', '2', '3'],
             'active' => 1,
             'priority' => 1,
@@ -107,11 +115,14 @@ class InstallSaleRule implements DataPatchInterface
 
         $setcondition = $this->generateCondition($data['condition']);
 
+        $skate_web_id = $this->websiteRepositoryInterface->get(ConfigureStores::IBC_SKATE_WEBSITE_CODE)->getId();
+        $games_web_id = $this->websiteRepositoryInterface->get(ConfigureStores::IBC_GAMES_WEBSITE_CODE)->getId();
+
         $cartRule = $this->ruleFactory->create();
         $cartRule
             ->setName($data['name'])
             ->setDescription($data['description'])
-            ->setWebsiteIds($data['websiteids'])
+            ->setWebsiteIds([$skate_web_id, $games_web_id])
             ->setCustomerGroupIds($data['groups'])
             ->setIsActive($data['active'])
             ->setIsActive($data['priority'])
@@ -129,7 +140,9 @@ class InstallSaleRule implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 
     /**

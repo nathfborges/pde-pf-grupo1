@@ -15,7 +15,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Store\Model\ScopeInterface;
-
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Class RegisterThemes
@@ -48,7 +48,7 @@ class RegisterThemesSkate implements DataPatchInterface
     public function apply()
     {
 
-        $ibcSkateId = $this->storeManager->getStore('skate_ibc_1')->getId();
+        $ibcSkateId = $this->storeManager->getStore(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
         $this->configInterface->saveConfig(
             'design/theme/theme_id',
             4,
@@ -61,7 +61,9 @@ class RegisterThemesSkate implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
     /**
      * {@inheritdoc}
