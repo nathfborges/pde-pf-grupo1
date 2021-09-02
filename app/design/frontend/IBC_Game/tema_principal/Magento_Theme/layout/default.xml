@@ -20,4 +20,7 @@
             </block>
         </container>
     </referenceContainer>
+
+    <referenceContainer name="main.content" htmlTag="main" htmlClass="page-main-full-width" />
+    
 </page>

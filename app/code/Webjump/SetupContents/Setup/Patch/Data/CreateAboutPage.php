@@ -38,7 +38,7 @@ class CreateAboutPage implements DataPatchInterface
     private $pageResource;    /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE =  ['skate_ibc'];    /**
+    const CODE_WEBSITE =  ['skate_ibc_1', 'skate_ibc_2'];    /**
      * AddNewCmsPage constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param PageFactory $pageFactory
@@ -76,10 +76,10 @@ class CreateAboutPage implements DataPatchInterface
             <style>#html-body [data-pb-style=N7KLKU3]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="N7KLKU3"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somo a maior empresa de games da América Latina.</p></div></div></div>
             
         HTML;
-        
-        $pageIdentifier = 'quem_somos';
+
+        $pageIdentifier = 'quem-somos-skate';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
-        $cmsPageModel->setIdentifier('quem_somos');
+        $cmsPageModel->setIdentifier('quem-somos-skate');
         $cmsPageModel->setStores($website->getStoreIds());
         $cmsPageModel->setTitle('Quem somos');
         $cmsPageModel->setContentHeading('Quem somos');
