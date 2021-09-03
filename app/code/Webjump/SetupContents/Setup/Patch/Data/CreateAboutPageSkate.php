@@ -10,8 +10,9 @@ use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
-class CreateAboutPage implements DataPatchInterface
+class CreateAboutPageSkate implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -32,13 +33,14 @@ class CreateAboutPage implements DataPatchInterface
      * @var PageFactory
      */
     private $pageFactory;
+
     /**
      * @var \Magento\Cms\Model\ResourceModel\Page
      */
     private $pageResource;    /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE =  ['skate_ibc_1', 'skate_ibc_2'];    /**
+    const CODE_WEBSITE =  [ConfigureStores::IBC_SKATE_WEBSITE_CODE];    /**
      * AddNewCmsPage constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param PageFactory $pageFactory
@@ -72,9 +74,9 @@ class CreateAboutPage implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
         
         $content = <<<HTML
-            <style>#html-body [data-pb-style=SM07R2G]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SM07R2G"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somos a maior empresa de skate da América Latina</p></div></div></div>
-            <style>#html-body [data-pb-style=N7KLKU3]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="N7KLKU3"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somo a maior empresa de games da América Latina.</p></div></div></div>
             
+            <style>#html-body [data-pb-style=SM07R2G]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SM07R2G"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somos a maior empresa de skate da América Latina</p></div></div></div>
+
         HTML;
 
         $pageIdentifier = 'quem-somos-skate';
