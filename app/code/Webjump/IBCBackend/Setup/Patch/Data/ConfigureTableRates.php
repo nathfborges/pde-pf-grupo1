@@ -156,6 +156,8 @@ class ConfigureTableRates implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 }
