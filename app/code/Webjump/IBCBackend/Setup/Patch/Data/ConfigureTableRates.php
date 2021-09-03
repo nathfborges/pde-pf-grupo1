@@ -9,6 +9,9 @@ use Magento\Setup\Module\Setup;
 use DomainException;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigureTableRates implements DataPatchInterface
 {
     const TABLE_NAME = 'shipping_tablerate';
@@ -154,6 +157,8 @@ class ConfigureTableRates implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 }
