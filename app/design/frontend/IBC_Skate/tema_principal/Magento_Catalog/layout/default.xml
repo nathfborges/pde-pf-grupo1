@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<referenceContainer name="product.info.main">
+    <container name="info-content" htmlTag="div" htmlClass="block info-content">              
+       <block class="Magento\Cms\Block\Block" name="promo_info_block">
+           <arguments>
+                <argument name="block_id" xsi:type="string">info-skate-br</argument>
+           </arguments>
+       </block>
+    </container>
+</referenceContainer>
+<referenceContainer name="product.info.main">
+    <container name="info-content-ing" htmlTag="div" htmlClass="block info-content">              
+       <block class="Magento\Cms\Block\Block" name="promo_info_block_ing">
+           <arguments>
+                <argument name="block_id" xsi:type="string">info-skate-ing</argument>
+           </arguments>
+       </block>
+    </container>
+</referenceContainer>
+</page>
