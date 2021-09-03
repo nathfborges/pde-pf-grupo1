@@ -20,6 +20,8 @@ use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 /**
  * Class RegisterThemes
  * @package Magento\Theme\Setup\Patch
+ * 
+ * @codeCoverageIgnore
  */
 class RegisterThemesSkate2 implements DataPatchInterface
 {

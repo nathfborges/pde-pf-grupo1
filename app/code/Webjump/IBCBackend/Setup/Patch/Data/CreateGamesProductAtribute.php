@@ -12,6 +12,9 @@ use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Catalog\Api\ProductAttributeManagementInterface;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
+/**
+ * @codeCoverageIgnore
+ */
 class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableInterface
 {
     const ATTRIBUTE_CODE_1 = 'age_rating';
