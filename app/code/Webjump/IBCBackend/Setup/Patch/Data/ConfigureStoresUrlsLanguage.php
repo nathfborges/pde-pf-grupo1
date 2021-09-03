@@ -8,6 +8,9 @@ use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigureStoresUrlsLanguage implements DataPatchInterface
 {
     /** @var ModuleDataSetupInterface */

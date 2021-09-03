@@ -8,6 +8,9 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class UpgradeCategories implements DataPatchInterface
 {
     /**
@@ -29,6 +32,7 @@ class UpgradeCategories implements DataPatchInterface
      * @var StoreRepositoryInterface
      */
     private $storeRepositoryInterface;
+    
     /**
      * PatchInitial constructor.
      * @param ModuleDataSetupInterface $moduleDataSetup

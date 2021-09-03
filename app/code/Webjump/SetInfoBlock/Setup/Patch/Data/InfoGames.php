@@ -6,11 +6,14 @@ namespace Webjump\SetInfoBlock\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Model\Store;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * 
+ * @codeCoverageIgnore
  */
 class InfoGames implements DataPatchInterface
 {
@@ -18,35 +21,48 @@ class InfoGames implements DataPatchInterface
      * @var string IDENTIFIER
      */
     const IDENTIFIER = 'info-games';
+    
     /**
      * @var string TITLE
      */
     const TITLE = 'Information Games';
+    
     /**
      * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
+    
     /**
      * @var BlockRepositoryInterface $blockRepository
      */
     private $blockRepository;
+    
     /**
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
+    
+    /**
+     * @var StoreRepositoryInterface $storeRepositoryInterface
+     */
+    private $storeRepositoryInterface;
+    
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
      * @param \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+     * @param StoreRepositoryInterface $storeRepositoryInterface
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
+        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
@@ -71,13 +87,17 @@ class InfoGames implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
+
+        $games_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
+
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['3'])
+            ->setStores([$games_store_id])
             ->setContent($content);
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -85,11 +105,14 @@ class InfoGames implements DataPatchInterface
     {
         return [];
     }
+    
     /**
      * {@inheritdoc}
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 }

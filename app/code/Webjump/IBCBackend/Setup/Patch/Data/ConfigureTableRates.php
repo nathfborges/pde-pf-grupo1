@@ -8,7 +8,6 @@ use Magento\Framework\File\Csv;
 use Magento\Setup\Module\Setup;
 use DomainException;
 use Magento\Store\Api\WebsiteRepositoryInterface;
-
 /**
  * @codeCoverageIgnore
  */

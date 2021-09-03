@@ -12,7 +12,6 @@ use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Model\ResourceModel\Group;
 use Magento\Store\Model\GroupFactory;
 
-
 /**
  * @codeCoverageIgnore
  */

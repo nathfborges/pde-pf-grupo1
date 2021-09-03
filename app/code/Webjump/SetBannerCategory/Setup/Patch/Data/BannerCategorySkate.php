@@ -6,13 +6,14 @@ namespace Webjump\SetBannerCategory\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Store\Model\Store;
-use Magento\Catalog\Model\Category;
-use Magento\Catalog\Setup\CategorySetupFactory;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * 
+ * @codeCoverageIgnore
  */
 class BannerCategorySkate implements DataPatchInterface
 {
@@ -36,6 +37,8 @@ class BannerCategorySkate implements DataPatchInterface
      * @var BlockInterfaceFactory $blockFactory
      */
     private $blockFactory;
+
+    private $storeRepositoryInterface;
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param \Magento\Cms\Api\BlockRepositoryInterface $blockRepository
@@ -44,11 +47,13 @@ class BannerCategorySkate implements DataPatchInterface
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory
+        \Magento\Cms\Api\Data\BlockInterfaceFactory $blockFactory,
+        StoreRepositoryInterface $storeRepositoryInterface
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->blockRepository = $blockRepository;
         $this->blockFactory = $blockFactory;
+        $this->storeRepositoryInterface = $storeRepositoryInterface;
     }
     /**
      * Do Upgrade
@@ -71,11 +76,13 @@ class BannerCategorySkate implements DataPatchInterface
      */
     private function getCmsBlock($content): \Magento\Cms\Api\Data\BlockInterface
     {
+        $skate_store_1_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_1_CODE)->getId();
+        $skate_store_2_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
         return $this->blockFactory->create()
             ->setTitle(self::TITLE)
             ->setIdentifier(self::IDENTIFIER)
             ->setIsActive(\Magento\Cms\Model\Block::STATUS_ENABLED)
-            ->setStores(['1', '2'])
+            ->setStores([$skate_store_1_id, $skate_store_2_id])
             ->setContent($content);
     }
     /**
@@ -90,6 +97,8 @@ class BannerCategorySkate implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 }
