@@ -9,6 +9,9 @@ use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Catalog\Setup\CategorySetup;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
+/**
+ * @codeCoverageIgnore
+ */
 class CreateSkateAttributeSet implements DataPatchInterface
 {
     const ATTRIBUTE_SET_ID = 'Skate';
