@@ -78,14 +78,14 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             [
                 'attribute_set' => 'Skate',
                 'user_defined' => true,
-                'type' => 'decimal',
+                'type' => 'text',
                 'label' => 'Tamanho do Shape',
                 'input' => 'select',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
-                'visible_on_front' => false,
+                'visible_on_front' => true,
                 'option' => ['values' => ['7.5', '7.75', '8.0', '8.25', '8.5']]
             ]
         );
@@ -103,14 +103,14 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             [
                 'attribute_set' => 'Skate',
                 'user_defined' => true,
-                'type' => 'decimal',
+                'type' => 'text',
                 'label' => 'Tipo de shape',
                 'input' => 'select',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
-                'visible_on_front' => false,
+                'visible_on_front' => true,
                 'option' => ['values' => ['Maple', 'Fibra', 'Marfin']]
             ]
         );
