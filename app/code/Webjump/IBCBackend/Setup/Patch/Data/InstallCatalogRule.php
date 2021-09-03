@@ -9,7 +9,12 @@ use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface;
 use Magento\Customer\Model\Group;
 use Webjump\IBCBackend\App\State;
 use Magento\Framework\App\Area;
+use Magento\Store\Api\WebsiteRepositoryInterface;
+use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
+/**
+ * @codeCoverageIgnore
+ */
 class InstallCatalogRule implements DataPatchInterface
 {
     /** @var ModuleDataSetupInterface */
@@ -24,6 +29,9 @@ class InstallCatalogRule implements DataPatchInterface
     /** @var State */
     private $state;
 
+    /** @var WebsiteRepositoryInterface */
+    private $websiteRepositoryInterface;
+
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param RuleInterfaceFactory $ruleFactory
@@ -33,11 +41,13 @@ class InstallCatalogRule implements DataPatchInterface
         ModuleDataSetupInterface $moduleDataSetup,
         RuleInterfaceFactory $ruleFactory,
         CatalogRuleRepositoryInterface $catalogRuleRepository,
+        WebsiteRepositoryInterface $websiteRepositoryInterface,
         State $state)
     {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->ruleFactory = $ruleFactory;
         $this->catalogRuleRepository = $catalogRuleRepository;
+        $this->websiteRepositoryInterface = $websiteRepositoryInterface;
         $this->state = $state;
         if (!$this->state->validateAreaCode()) {
             $this->state->setAreaCode(Area::AREA_ADMINHTML);
@@ -48,6 +58,9 @@ class InstallCatalogRule implements DataPatchInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
 
+        $skate_website_id = $this->websiteRepositoryInterface->get(ConfigureStores::IBC_SKATE_WEBSITE_CODE)->getId();
+        $games_website_id = $this->websiteRepositoryInterface->get(ConfigureStores::IBC_GAMES_WEBSITE_CODE)->getId();
+
         $catalogRule5Perc = $this->ruleFactory->create();
         $catalogRule5Perc
             ->setName('Discount 5%')
@@ -57,7 +70,7 @@ class InstallCatalogRule implements DataPatchInterface
             ->setSimpleAction("by_percent")
             ->setDiscountAmount(5)
             ->setStopRulesProcessing(0)
-            ->setWebsiteIds('1');
+            ->setWebsiteIds($skate_website_id);
 
         $this->catalogRuleRepository->save($catalogRule5Perc);
 
@@ -70,7 +83,7 @@ class InstallCatalogRule implements DataPatchInterface
             ->setSimpleAction("by_percent")
             ->setDiscountAmount(10)
             ->setStopRulesProcessing(0)
-            ->setWebsiteIds('2');
+            ->setWebsiteIds($games_website_id);
 
         $this->catalogRuleRepository->save($catalogRule10Perc);
 
@@ -82,7 +95,9 @@ class InstallCatalogRule implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 
     /**
