@@ -12,6 +12,9 @@ use Magento\Framework\App\Area;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
+/**
+ * @codeCoverageIgnore
+ */
 class InstallCatalogRule implements DataPatchInterface
 {
     /** @var ModuleDataSetupInterface */

@@ -8,7 +8,9 @@ use Magento\Framework\File\Csv;
 use Magento\Setup\Module\Setup;
 use DomainException;
 use Magento\Store\Api\WebsiteRepositoryInterface;
-
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigureTableRates implements DataPatchInterface
 {
     const TABLE_NAME = 'shipping_tablerate';

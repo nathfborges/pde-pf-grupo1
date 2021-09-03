@@ -12,6 +12,8 @@ use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * 
+ * @codeCoverageIgnore
  */
 class InfoGames implements DataPatchInterface
 {

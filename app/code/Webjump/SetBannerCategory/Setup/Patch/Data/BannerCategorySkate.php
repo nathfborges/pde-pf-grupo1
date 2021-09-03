@@ -13,6 +13,8 @@ use Magento\Catalog\Setup\CategorySetupFactory;
 /**
  * Patch to apply creation of the block Charges and fees
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * 
+ * @codeCoverageIgnore
  */
 class BannerCategorySkate implements DataPatchInterface
 {

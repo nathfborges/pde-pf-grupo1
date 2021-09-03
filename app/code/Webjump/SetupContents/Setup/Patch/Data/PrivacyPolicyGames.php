@@ -23,6 +23,7 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
+/** @codeCoverageIgnore */
 class PrivacyPolicyGames implements DataPatchInterface
 {
 

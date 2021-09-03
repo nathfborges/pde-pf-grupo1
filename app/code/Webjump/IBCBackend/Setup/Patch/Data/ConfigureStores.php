@@ -14,6 +14,9 @@ use Magento\Store\Model\GroupFactory;
 use Magento\Store\Model\ResourceModel\Store;
 use Magento\Store\Model\StoreFactory;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigureStores implements DataPatchInterface
 {
 

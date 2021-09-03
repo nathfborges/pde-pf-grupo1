@@ -14,6 +14,9 @@ use Magento\Rule\Model\Condition\Combine;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
+/**
+ * @codeCoverageIgnore
+ */
 class InstallSaleRule implements DataPatchInterface
 {
     /**

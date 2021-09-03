@@ -12,7 +12,9 @@ use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
-
+/**
+ * @codeCoverageIgnore
+ */
 class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertableInterface
 {
     const ATTRIBUTE_CODE_1 = 'shape_size';
