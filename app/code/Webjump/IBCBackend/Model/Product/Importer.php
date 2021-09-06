@@ -5,6 +5,7 @@ use Magento\Framework\Filesystem\Directory\ReadFactory;
 use Magento\ImportExport\Model\ImportFactory;
 use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Importer
 {
@@ -56,17 +57,24 @@ class Importer
      */
     private $readFile;
 
+    /**
+     * @var ConsoleOutput
+     */
+    private $output;
+
     public function __construct(
         ImportFactory $importFactory,
         File $file,
         CsvFactory $csvFactory,
-        ReadFactory $readFile
+        ReadFactory $readFile,
+        ConsoleOutput $output
     )
     {
         $this->importFactory = $importFactory;
         $this->file = $file;
         $this->csvFactory = $csvFactory;
         $this->readFile = $readFile;
+        $this->output = $output;
     }
 
     /**
@@ -97,6 +105,7 @@ class Importer
         $validate = $import->validateSource($this->getCsv($fileName));
         if ($validate) {
             $result = $import->importSource();
+            $this->output->writeln("O arquivo $fileName foi importado com sucesso.");
             if ($result) {
                 $import->invalidateIndex();
             }
