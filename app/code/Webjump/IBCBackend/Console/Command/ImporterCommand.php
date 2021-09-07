@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Webjump\IBCBackend\Model\Product\Importer;
 use Magento\Framework\Console\Cli;
 
-Class AddProductsCommand extends Command
+Class ImporterCommand extends Command
 {
     const INPUT_KEY_NAME = 'name';
     const INPUT_KEY_DESCRIPTION = 'description';
