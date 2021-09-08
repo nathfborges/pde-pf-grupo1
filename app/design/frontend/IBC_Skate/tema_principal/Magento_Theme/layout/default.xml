@@ -9,6 +9,7 @@
     </referenceBlock>
     <referenceBlock name="header" remove="true" />
 
+    <referenceBlock name="breadcrumbs" remove="true" />
     <referenceContainer name="footer" remove="true" />
     <referenceContainer name="footer-container">
         <container name="footer-content" htmlTag="div" htmlClass="block footer-content">
