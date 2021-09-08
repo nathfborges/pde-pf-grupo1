@@ -9,6 +9,9 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class TranslateSkateAttributeLabel implements DataPatchInterface
 {
     /**
@@ -36,6 +39,15 @@ class TranslateSkateAttributeLabel implements DataPatchInterface
      */
     private $storeRepository;
 
+    /**
+     * Constructor of TranslateSkateAttributeLabel class.
+     * 
+     * @param ModuleDataSetupInterface
+     * @param EavSetupFactory
+     * @param ProductAttributeRepositoryInterface
+     * @param AttributeFrontendLabelInterfaceFactory
+     * @param StoreRepositoryInterface
+     */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         EavSetupFactory $eavSetupFactory,
@@ -50,6 +62,9 @@ class TranslateSkateAttributeLabel implements DataPatchInterface
         $this->storeRepository = $storeRepository;
     }
 
+    /**
+     * Translate the label of the products attributs on $data array to english.
+     */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -91,11 +106,17 @@ class TranslateSkateAttributeLabel implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDependencies()
     {
         return [

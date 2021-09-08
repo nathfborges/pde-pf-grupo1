@@ -10,17 +10,15 @@ use Magento\Eav\Api\AttributeOptionManagementInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class TranslateSkateProductAttributeOptions implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
      */
     private $moduleDataSetup;
-
-    /**
-     * @var ProductAttributeRepositoryInterface
-     */
-    private $productAttributeRepository;
 
     /**
      * @var AttributeOptionLabelInterfaceFactory
@@ -42,9 +40,17 @@ class TranslateSkateProductAttributeOptions implements DataPatchInterface
      */
     private $storeRepository;
 
+    /**
+     * Constructor of TranslateSkateProductAttributeOptions class.
+     * 
+     * @param ModuleDataSetupInterface
+     * @param AttributeOptionLabelInterfaceFactory
+     * @param AttributeOptionInterfaceFactory
+     * @param AttributeOptionManagementInterface
+     * @param StoreRepositoryInterface
+     */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        ProductAttributeRepositoryInterface $productAttributeRepository,
         AttributeOptionLabelInterfaceFactory $attributeOptionLabelFactory,
         AttributeOptionInterfaceFactory $attributeOptionFactory,
         AttributeOptionManagementInterface $attributeOptionManagement,
@@ -52,13 +58,15 @@ class TranslateSkateProductAttributeOptions implements DataPatchInterface
 
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
-        $this->productAttributeRepository = $productAttributeRepository;
         $this->attributeOptionLabelFactory = $attributeOptionLabelFactory;
         $this->attributeOptionFactory = $attributeOptionFactory;
         $this->attributeOptionManagement = $attributeOptionManagement;
         $this->storeRepository = $storeRepository;
     }
 
+    /**
+     * Create options on $data array to a especific atribute code on a specific store.
+     */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -98,18 +106,20 @@ class TranslateSkateProductAttributeOptions implements DataPatchInterface
             $sortOrder++;
         }
 
-
-
-
-
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAliases()
     {
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDependencies()
     {
         return [
