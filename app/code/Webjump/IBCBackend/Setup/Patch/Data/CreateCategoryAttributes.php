@@ -86,7 +86,6 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
                 'user_defined' => false,
                 'default' => null,
                 'group' => '',
-                'visible_on_front' => true,
                 'backend' => ''
             ]
         );
@@ -108,7 +107,6 @@ class CreateCategoryAttributes implements DataPatchInterface, PatchRevertableInt
                 'user_defined' => false,
                 'default' => null,
                 'group' => '',
-                'visible_on_front' => true,
                 'backend' => ''
             ]
         );
