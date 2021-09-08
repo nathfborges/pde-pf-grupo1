@@ -226,9 +226,9 @@ class InstallRefactoredCategories implements DataPatchInterface
             ],
             [
                 'entity' => $this->entities[3],
-                'name' => 'Deck',
-                'meta-title' => 'IBC Skate | Deck',
-                'url-key' => 'deck'
+                'name' => 'Decks',
+                'meta-title' => 'IBC Skate | Decks',
+                'url-key' => 'decks'
             ],
             [
                 'entity' => $this->entities[4],
