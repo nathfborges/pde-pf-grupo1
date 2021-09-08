@@ -9,6 +9,7 @@
         </arguments>
     </referenceBlock>
     <referenceBlock name="header" remove="true"/>
+    <referenceBlock name="breadcrumbs" remove="true" />
 
     <referenceContainer name="footer" remove="true"/>
     <referenceContainer name="footer-container">
