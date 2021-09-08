@@ -12,6 +12,9 @@ use Magento\Store\Api\StoreRepositoryInterface;
 use Magento\Store\Model\GroupFactory;
 use Magento\Store\Model\ResourceModel\Group;
 
+/**
+ * @codeCoverageIgnore
+ */
 class InstallRefactoredCategories implements DataPatchInterface
 {
     /**
