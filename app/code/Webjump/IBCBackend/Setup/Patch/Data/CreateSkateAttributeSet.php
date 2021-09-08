@@ -87,7 +87,9 @@ class CreateSkateAttributeSet implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 
     /**

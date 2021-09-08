@@ -349,6 +349,7 @@ return [
         'Webjump_SetFooter' => 1,
         'Webjump_SetInfoBlock' => 1,
         'Webjump_SetTheme' => 1,
+        'Webjump_SetWhatsappBlock' => 1,
         'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
     ]
