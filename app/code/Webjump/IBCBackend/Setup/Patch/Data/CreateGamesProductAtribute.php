@@ -111,7 +111,7 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
-                'option' => ['values' => ['Yes', 'No']]
+                'option' => ['values' => ['Sim', 'Não']]
             ]
         );
 

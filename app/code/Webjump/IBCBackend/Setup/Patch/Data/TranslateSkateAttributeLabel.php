@@ -8,7 +8,6 @@ use Magento\Eav\Api\Data\AttributeFrontendLabelInterfaceFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
-use Webjump\IBCBackend\Setup\Patch\Data\CreateSkateProductAttribute;
 
 class TranslateSkateAttributeLabel implements DataPatchInterface
 {
