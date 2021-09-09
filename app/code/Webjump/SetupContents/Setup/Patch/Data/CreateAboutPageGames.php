@@ -73,9 +73,21 @@ class CreateAboutPageGames implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
         
         $content = <<<HTML
-            
-            <style>#html-body [data-pb-style=N7KLKU3]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="N7KLKU3"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somo a maior empresa de games da América Latina.</p></div></div></div>
-
+        <style>#html-body [data-pb-style=JD3LDUR]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="JD3LDUR"><div data-content-type="html" data-appearance="default" data-element="main">&lt;span&gt;A Jump Games surgiu em 2021, por um grupo de jovens que se uniu por um mesmo propósito: expandir a cultura gamer e sua acessibilidade para todos. Nós acreditamos ser de extrema importância que todos tenham acesso ao mundo dos jogos digitais, pois os mesmos são uma enorme fonte de lazer, entretenimento e aprendizado.&lt;/span&gt;
+        &lt;div class="missao-visao-valores"&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Missão&lt;/h3&gt;
+        &lt;p&gt;Nossa missão é expandir a cultura gamer e a acessibilidade da mesma, de forma que os jogos digitais sejam acessíveis para todos os jovens, adultos e idosos interessados no assunto.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Visão&lt;/h3&gt;
+        &lt;p&gt;Visamos melhorar a experiência de nossos clientes com a compra de jogos digitais, crescendo como o maior e-commerce de jogos digitais do Brasil.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Valores&lt;/h3&gt;
+        &lt;p&gt;Tecnologia, cultura, lazer, experiência e satisfação do cliente, acessibilidade, agilidade.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;</div></div></div>    
         HTML;
 
         $pageIdentifier = 'quem-somos-games';
