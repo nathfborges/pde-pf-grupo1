@@ -11,6 +11,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
+use Magento\Store\Api\StoreRepositoryInterface;
 
 class CreateAboutPageSkateEn implements DataPatchInterface
 {
@@ -33,6 +34,8 @@ class CreateAboutPageSkateEn implements DataPatchInterface
      * @var PageFactory
      */
     private $pageFactory;
+
+    private $storeRepository;
 
     /**
      * @var \Magento\Cms\Model\ResourceModel\Page
@@ -57,7 +60,8 @@ class CreateAboutPageSkateEn implements DataPatchInterface
         Website $website,
         WriterInterface $writerInterface,
         WebsiteFactory $websiteFactory,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
@@ -66,6 +70,7 @@ class CreateAboutPageSkateEn implements DataPatchInterface
         $this->writerInterface = $writerInterface;
         $this->websiteFactory = $websiteFactory;
         $this->storeManager = $storeManager;
+        $this->storeRepository = $storeRepository;
     }    /**
      * @param \Magento\Store\Model\Website $website
      */
@@ -73,16 +78,16 @@ class CreateAboutPageSkateEn implements DataPatchInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
         
-        $content = <<<HTML
-            
-            <style>#html-body [data-pb-style=SM07R2G]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SM07R2G"><div data-content-type="text" data-appearance="default" data-element="main"><p>We are the largest skate company in Latin America</p></div></div></div>
+        $skate_in = $this->storeRepository->get(ConfigureStores::IBC_SKATE_STORE_2_CODE);
 
+        $content = <<<HTML
+        
         HTML;
 
         $pageIdentifier = 'about-us-skate';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
         $cmsPageModel->setIdentifier('about-us-skate');
-        $cmsPageModel->setStores($website->getStoreIds());
+        $cmsPageModel->setStores([$skate_in->getId()]);
         $cmsPageModel->setTitle('About Us');
         $cmsPageModel->setContentHeading('About Us');
         $cmsPageModel->setPageLayout('1column');

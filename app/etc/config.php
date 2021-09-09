@@ -336,6 +336,7 @@ return [
         'Klarna_Kp' => 1,
         'Klarna_Onsitemessaging' => 1,
         'Klarna_KpGraphQl' => 1,
+        'OlegKoval_RegenerateUrlRewrites' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
@@ -349,6 +350,7 @@ return [
         'Webjump_SetFooter' => 1,
         'Webjump_SetInfoBlock' => 1,
         'Webjump_SetTheme' => 1,
+        'Webjump_SetWhatsappBlock' => 1,
         'Webjump_SetupContents' => 1,
         'Yotpo_Yotpo' => 1
     ]
