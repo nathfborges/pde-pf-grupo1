@@ -92,7 +92,8 @@ class InstallRefactoredCategories implements DataPatchInterface
             $category->setName($key['name'])
                 ->setIsActive(true)
                 ->setParentId($categories[$key['parent_ref']])
-                ->setMetaTitle($key['meta']);
+                ->setMetaTitle($key['meta'])
+                ->setUrlKey($key['url-key']);
 
             $this->categoryRepositoryInterface->save($category);
 
@@ -122,13 +123,25 @@ class InstallRefactoredCategories implements DataPatchInterface
         $skate_store_2_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_SKATE_STORE_2_CODE)->getId();
 
         $data2 = $this->getData2();
-        foreach ($data2 as $eID) {
-            $categories2 = $this->categoryRepositoryInterface->get($eID['entity'], $skate_store_2_id);
-            $categories2->setName($eID['name'])
-                ->setMetaTitle($eID['meta-title'])
-                ->setUrlKey($eID['url-key'])
+        foreach ($data2 as $eIDskate2) {
+            $categories2 = $this->categoryRepositoryInterface->get($eIDskate2['entity'], $skate_store_2_id);
+            $categories2->setName($eIDskate2['name'])
+                ->setMetaTitle($eIDskate2['meta-title'])
+                ->setUrlKey($eIDskate2['url-key'])
                 ->save();
         }
+
+        // SETTING URL KEY TO GAMES STORE
+        $games_store_id = $this->storeRepositoryInterface->get(ConfigureStores::IBC_GAMES_STORE_CODE)->getId();
+
+        $data3 = $this->getData3();
+        foreach ($data3 as $eIDgames) {
+            $categories3 = $this->categoryRepositoryInterface->get($eIDgames['entity'], $games_store_id);
+            $categories3->setUrlKey($eIDgames['url-key'])
+                ->save();
+        }
+
+        echo shell_exec('bin/magento ok:urlrewrites:regenerate --entity-type=category');
     }
 
     private function getData()
@@ -138,76 +151,92 @@ class InstallRefactoredCategories implements DataPatchInterface
             [
                 'name' => 'Skate',
                 'parent_ref' => 0,
-                'meta' => ''
+                'meta' => '',
+                'url-key' => '',
             ],
             // SKATE STORE CAREGORIES | REF: 1
             [
                 'name' => 'Skates Completos',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Skates Completos'
+                'meta' => 'IBC Skate | Skates Completos',
+                'url-key' => 'skates-completos',
             ],
             [
                 'name' => 'Rodas',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Rodas'
+                'meta' => 'IBC Skate | Rodas',
+                'url-key' => 'rodas',
             ],
             [
                 'name' => 'Shapes',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Shapes'
+                'meta' => 'IBC Skate | Shapes',
+                'url-key' => 'shapes',
             ],
             [
                 'name' => 'Lixas',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Lixas'
+                'meta' => 'IBC Skate | Lixas',
+                'url-key' => 'lixas',
             ],
             [
                 'name' => 'Trucks',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Trucks'
+                'meta' => 'IBC Skate | Trucks',
+                'url-key' => 'trucks',
             ],
             [
                 'name' => 'Acessórios',
                 'parent_ref' => 1,
-                'meta' => 'IBC Skate | Acessórios'
+                'meta' => 'IBC Skate | Acessórios',
+                'url-key' => 'acessorios',
+
             ]
             // GAMES STORE ROOT
             ,
             [
                 'name' => 'Games',
                 'parent_ref' => 0,
-                'meta' => ''
+                'meta' => '',
+                'url-key' => '',
             ],
             // GAMES STORE CAREGORIES | REF: 8
             [
                 'name' => 'Luta',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Luta'
+                'meta' => 'IBC Games | Luta',
+                'url-key' => 'luta',
             ],
             [
                 'name' => 'Simulação',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Simulação'
+                'meta' => 'IBC Games | Simulação',
+                'url-key' => 'simulacao',
+
             ],
             [
                 'name' => 'Aventura',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Aventura'
+                'meta' => 'IBC Games | Aventura',
+                'url-key' => 'aventura',
             ],
             [
                 'name' => 'Terror',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Terror'
+                'meta' => 'IBC Games | Terror',
+                'url-key' => 'terror',
             ],
             [
                 'name' => 'Esporte',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Esporte'
+                'meta' => 'IBC Games | Esporte',
+                'url-key' => 'esporte',
             ],
             [
                 'name' => 'Estratégia',
                 'parent_ref' => 8,
-                'meta' => 'IBC Games | Estratégia'
+                'meta' => 'IBC Games | Estratégia',
+                'url-key' => 'estrategia',
             ]
         ];
     }
@@ -235,9 +264,9 @@ class InstallRefactoredCategories implements DataPatchInterface
             ],
             [
                 'entity' => $this->entities[4],
-                'name' => 'Sandpaper',
-                'meta-title' => 'IBC Skate | Sandpaper',
-                'url-key' => 'sandpaper'
+                'name' => 'Grip Tape',
+                'meta-title' => 'IBC Skate | Grip Tape',
+                'url-key' => 'gripe-tape'
             ],
             [
                 'entity' => $this->entities[5],
@@ -250,7 +279,37 @@ class InstallRefactoredCategories implements DataPatchInterface
                 'name' => 'Acessories',
                 'meta-title' => 'IBC Skate | Acessories',
                 'url-key' => 'acessories'
+            ]
+        ];
+    }
+
+    private function getData3()
+    {
+        return [
+            [
+                'entity' => $this->entities[8],
+                'url-key' => 'luta'
             ],
+            [
+                'entity' => $this->entities[9],
+                'url-key' => 'simulacao'
+            ],
+            [
+                'entity' => $this->entities[10],
+                'url-key' => 'aventura'
+            ],
+            [
+                'entity' => $this->entities[11],
+                'url-key' => 'terror'
+            ],
+            [
+                'entity' => $this->entities[12],
+                'url-key' => 'esporte'
+            ],
+            [
+                'entity' => $this->entities[13],
+                'url-key' => 'estrategia'
+            ]
         ];
     }
 
