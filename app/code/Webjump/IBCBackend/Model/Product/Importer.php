@@ -28,7 +28,7 @@ class Importer
         3 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
-            'file' => 'website-productsSkate.csv'
+            'file' => 'otherTypesProducts.csv'
         ],
         4 => [
             'entity' => 'stock_sources',
@@ -55,7 +55,7 @@ class Importer
     /**
      * @var ReadFactory
      */
-    private $readFile;
+    private $readFactory;
 
     /**
      * @var ConsoleOutput
@@ -66,14 +66,14 @@ class Importer
         ImportFactory $importFactory,
         File $file,
         CsvFactory $csvFactory,
-        ReadFactory $readFile,
+        ReadFactory $readFactory,
         ConsoleOutput $output
     )
     {
         $this->importFactory = $importFactory;
         $this->file = $file;
         $this->csvFactory = $csvFactory;
-        $this->readFile = $readFile;
+        $this->readFactory = $readFactory;
         $this->output = $output;
     }
 
@@ -115,7 +115,7 @@ class Importer
     public function getCsv($fileName)
     {
         $import_file = $this->file->getPathInfo(__DIR__ . '/csv/'. $fileName);
-        $readSetup = $this->readFile->create($import_file["dirname"]);
+        $readSetup = $this->readFactory->create($import_file['dirname']);
         $csvSource = $this->csvFactory->create(
             [
                 'file' => $import_file['basename'],
@@ -124,5 +124,4 @@ class Importer
         );
         return $csvSource;
     }
-
 }
