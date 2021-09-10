@@ -19,6 +19,7 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
 {
     const ATTRIBUTE_CODE_1 = 'age_rating';
     const ATTRIBUTE_CODE_2 = 'multiplayer';
+    const ATTRIBUTE_CODE_3 = 'cor';
 
     /**
      * @var EavSetupFactory
@@ -99,25 +100,27 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
 
         $eavSetup->addAttribute(
             Product::ENTITY,
-            self::ATTRIBUTE_CODE_2,
+            self::ATTRIBUTE_CODE_3,
             [
                 'attribute_set' => 'Games',
                 'user_defined' => true,
                 'type' => 'text',
-                'label' => 'É multiplayer?',
+                'label' => 'Edição',
                 'input' => 'select',
                 'required' => false,
-                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
-                'option' => ['values' => ['Sim', 'Não']]
+                'option' => ['values' => [
+                    'Padrão',
+                    'Champions']]
             ]
         );
 
-        $sortOrderTwo = 51;
+        $sortOrderThree = 51;
         $this->productAttributeManagement
-            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrderTwo);
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_3, $sortOrderThree);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
