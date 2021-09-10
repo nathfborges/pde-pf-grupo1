@@ -19,7 +19,7 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
 {
     const ATTRIBUTE_CODE_1 = 'age_rating';
     const ATTRIBUTE_CODE_2 = 'multiplayer';
-    const ATTRIBUTE_CODE_3 = 'cor';
+    const ATTRIBUTE_CODE_3 = 'edicao';
 
     /**
      * @var EavSetupFactory
@@ -114,7 +114,7 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'label' => 'É multiplayer?',
                 'input' => 'select',
                 'required' => false,
-                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
