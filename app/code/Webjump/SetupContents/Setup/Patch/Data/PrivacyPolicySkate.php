@@ -21,11 +21,8 @@ use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-<<<<<<< HEAD
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 use Magento\Store\Api\StoreRepositoryInterface;
-=======
->>>>>>> 0e31b7a731d45e6f7f3443473ce9908ced4f69dd
 
 
 /** @codeCoverageIgnore */
@@ -61,10 +58,7 @@ class PrivacyPolicySkate implements DataPatchInterface
      * @var PageFactory
      */
     private $pageFactory;
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e31b7a731d45e6f7f3443473ce9908ced4f69dd
     /**
      * @var \Magento\Cms\Model\ResourceModel\Page
      */
@@ -78,7 +72,7 @@ class PrivacyPolicySkate implements DataPatchInterface
     /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE = ['skate_ibc'];
+    const CODE_WEBSITE = [ConfigureStores::IBC_SKATE_WEBSITE_CODE];
 
     /**
      * AddNewCmsPage constructor.
@@ -157,7 +151,9 @@ class PrivacyPolicySkate implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }
 
     /**
