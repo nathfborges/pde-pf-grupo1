@@ -19,6 +19,7 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
 {
     const ATTRIBUTE_CODE_1 = 'shape_size';
     const ATTRIBUTE_CODE_2 = 'shape_type';
+    const ATTRIBUTE_CODE_3 = 'color';
 
     /**
      * @var EavSetupFactory
@@ -42,12 +43,12 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
 
     /**
      * CreateGamesProductAtribute contructor.
-     * 
+     *
      * @param EavSetupFactory
      * @param ModuleDataSetupInterface
      * @param ProductAttributeManagementInterface
      * @param AttributeSetFactory
-     * 
+     *
      * @return void
      */
     public function __construct(
@@ -117,6 +118,27 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
         $sortOrderTwo = 51;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrderTwo);
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::ATTRIBUTE_CODE_3,
+            [
+                'attribute_set' => 'Skate',
+                'user_defined' => true,
+                'type' => 'text',
+                'label' => 'Cor',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'used_in_product_listing' => true,
+                'system' => false,
+                'visible_on_front' => true,
+            ]
+        );
+
+        $sortOrderThree = 53;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_3, $sortOrderThree);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
