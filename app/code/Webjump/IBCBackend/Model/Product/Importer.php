@@ -34,6 +34,11 @@ class Importer
             'entity' => 'stock_sources',
             'behavior' => 'append',
             'file' => 'stockSkate.csv'
+        ],
+        5 => [
+            'entity' => 'catalog_product',
+            'behavior' => 'add_update',
+            'file' => 'website-productsSkate.csv'
         ]
     ];
 
