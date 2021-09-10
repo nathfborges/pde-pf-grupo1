@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="3columns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <referenceBlock name="logo">
         <arguments>
             <argument name="logo_width" xsi:type="number">220</argument>
@@ -7,10 +8,14 @@
             <argument name="logo_file" xsi:type="string">images/IBCSkateLogo.png</argument>
         </arguments>
     </referenceBlock>
-    <referenceBlock name="header" remove="true" />
+    <referenceBlock name="header" remove="true"/>
 
+<<<<<<< HEAD
     <referenceBlock name="breadcrumbs" remove="true" />
     <referenceContainer name="footer" remove="true" />
+=======
+    <referenceContainer name="footer" remove="true"/>
+>>>>>>> 0e31b7a731d45e6f7f3443473ce9908ced4f69dd
     <referenceContainer name="footer-container">
         <container name="footer-content" htmlTag="div" htmlClass="block footer-content">
             <block class="Magento\Cms\Block\Block" name="footer_links_block">
@@ -19,14 +24,8 @@
                 </arguments>
             </block>
         </container>
-        <container name="footer-content-ing" htmlTag="div" htmlClass="block footer-content">
-            <block class="Magento\Cms\Block\Block" name="footer_links_block_ing">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">skate-footer-ing</argument>
-                </arguments>
-            </block>
-        </container>
     </referenceContainer>
+<<<<<<< HEAD
         <referenceContainer name="main.content">           
        <block class="Magento\Cms\Block\Block" name="whatsapp">
            <arguments>
@@ -34,4 +33,6 @@
            </arguments>
        </block>
     </referenceContainer>
+=======
+>>>>>>> 0e31b7a731d45e6f7f3443473ce9908ced4f69dd
 </page>

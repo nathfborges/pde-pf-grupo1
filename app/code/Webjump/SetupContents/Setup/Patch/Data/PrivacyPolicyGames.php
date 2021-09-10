@@ -21,7 +21,6 @@ use Magento\Store\Model\WebsiteFactory;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
 
 /** @codeCoverageIgnore */
 class PrivacyPolicyGames implements DataPatchInterface
@@ -56,7 +55,6 @@ class PrivacyPolicyGames implements DataPatchInterface
      * @var PageFactory
      */
     private $pageFactory;
-    
     /**
      * @var \Magento\Cms\Model\ResourceModel\Page
      */
@@ -65,7 +63,7 @@ class PrivacyPolicyGames implements DataPatchInterface
     /**
      * const CODE_WEBSITE
      */
-    const CODE_WEBSITE = [ConfigureStores::IBC_GAMES_WEBSITE_CODE];
+    const CODE_WEBSITE = ['games_ibc'];
 
     /**
      * AddNewCmsPage constructor.
@@ -140,9 +138,7 @@ class PrivacyPolicyGames implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [
-            ConfigureStores::class
-        ];
+        return [];
     }
 
     /**
