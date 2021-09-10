@@ -74,15 +74,33 @@ class TranslateSkateProductAttributeOptions implements DataPatchInterface
         $data = [
             'maple' => [
                 'Maple',
-                'Maple'
+                'Maple',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_2
             ],
             'fibra' => [
                 'Fibra',
-                'Fiber'
+                'Fiber',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_2
             ],
             'marfin' => [
                 'Marfin',
-                'Ivory'
+                'Ivory',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_2
+            ],
+            'azul' => [
+                'Azul',
+                'Blue',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_3
+            ],
+            'braco' => [
+                'Branco',
+                'White',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_3
+            ],
+            'preto' => [
+                'Preto',
+                'Black',
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_3
             ]
         ];
 

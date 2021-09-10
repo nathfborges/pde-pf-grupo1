@@ -79,6 +79,10 @@ class TranslateSkateAttributeLabel implements DataPatchInterface
             'type' => [
                 CreateSkateProductAttribute::ATTRIBUTE_CODE_2,
                 'Deck Type'
+            ],
+            'cor' => [
+                CreateSkateProductAttribute::ATTRIBUTE_CODE_3,
+                'Color'
             ]
         ];
 
