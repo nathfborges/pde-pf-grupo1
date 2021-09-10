@@ -118,7 +118,7 @@ class TranslateSkateProductAttributeOptions implements DataPatchInterface
 
             $this->attributeOptionManagement->add(
                 \Magento\Catalog\Model\Product::ENTITY,
-                CreateSkateProductAttribute::ATTRIBUTE_CODE_2,
+                $optionValues[2],
                 $option
             );
             $sortOrder++;

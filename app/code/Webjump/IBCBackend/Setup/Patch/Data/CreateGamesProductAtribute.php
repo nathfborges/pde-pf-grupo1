@@ -87,7 +87,13 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'used_in_product_listing' => true,
                 'system' => false,
                 'visible_on_front' => true,
-                'option' => ['values' => ['Livre', '12', '14', '16', '18']]
+                'option' => ['values' => [
+                    'Livre', 
+                    '12', 
+                    '14', 
+                    '16', 
+                    '18'
+                    ]]
             ]
         );
 
@@ -97,6 +103,31 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
         $sortOrder = 50;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_1, $sortOrder);
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::ATTRIBUTE_CODE_2,
+            [
+                'attribute_set' => 'Games',
+                'user_defined' => true,
+                'type' => 'text',
+                'label' => 'É multiplayer?',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'used_in_product_listing' => true,
+                'system' => false,
+                'visible_on_front' => true,
+                'option' => ['values' => [
+                    'Sim',
+                    'Não'
+                ]]
+            ]
+        );
+
+        $sortOrderTwo = 51;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrderTwo);
 
         $eavSetup->addAttribute(
             Product::ENTITY,
@@ -114,11 +145,12 @@ class CreateGamesProductAtribute implements DataPatchInterface, PatchRevertableI
                 'visible_on_front' => true,
                 'option' => ['values' => [
                     'Padrão',
-                    'Champions']]
+                    'Champions'
+                ]]
             ]
         );
 
-        $sortOrderThree = 51;
+        $sortOrderThree = 53;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_3, $sortOrderThree);
 
