@@ -11,6 +11,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Webjump\IBCBackend\Setup\Patch\Data\ConfigureStores;
+use Magento\Store\Api\StoreRepositoryInterface;
 
 class CreateAboutPageSkate implements DataPatchInterface
 {
@@ -37,7 +38,10 @@ class CreateAboutPageSkate implements DataPatchInterface
     /**
      * @var \Magento\Cms\Model\ResourceModel\Page
      */
-    private $pageResource;    /**
+    private $pageResource;    
+    
+    private $storeRepository;
+    /**
      * const CODE_WEBSITE
      */
     const CODE_WEBSITE =  [ConfigureStores::IBC_SKATE_WEBSITE_CODE];    /**
@@ -57,7 +61,8 @@ class CreateAboutPageSkate implements DataPatchInterface
         Website $website,
         WriterInterface $writerInterface,
         WebsiteFactory $websiteFactory,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
@@ -66,6 +71,7 @@ class CreateAboutPageSkate implements DataPatchInterface
         $this->writerInterface = $writerInterface;
         $this->websiteFactory = $websiteFactory;
         $this->storeManager = $storeManager;
+        $this->storeRepository = $storeRepository;
     }    /**
      * @param \Magento\Store\Model\Website $website
      */
@@ -73,16 +79,30 @@ class CreateAboutPageSkate implements DataPatchInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
         
-        $content = <<<HTML
-            
-            <style>#html-body [data-pb-style=SM07R2G]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="SM07R2G"><div data-content-type="text" data-appearance="default" data-element="main"><p>Somos a maior empresa de skate da América Latina</p></div></div></div>
+        $skate_ptbr = $this->storeRepository->get(ConfigureStores::IBC_SKATE_STORE_1_CODE);
 
+        $content = <<<HTML
+        <style>#html-body [data-pb-style=HVMUOFE]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="HVMUOFE"><div data-content-type="html" data-appearance="default" data-element="main">&lt;span&gt;Criada em 2021, a IBC Skate é uma plataforma que se preocupa com a cultura urbana e pretende se tornar a representação pura do estilo de vida skatista. Pretendemos tornar acessível um esporte que é marginalizado e que possui suma importância na vida de quem o pratica.&lt;/span&gt;
+        &lt;div class="missao-visao-valores"&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Missão&lt;/h3&gt;
+        &lt;p&gt;Possuímos como objetivo expandir o acesso aos acessórios de skate em todo o mundo, além de interessar novas pessoas e as influenciar para conhecer esse universo tão lindo.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Visão&lt;/h3&gt;
+        &lt;p&gt;Queremos tornar a experiência de nossos clientes a melhor possível, além de passar a fazer parte de suas vidas diariamente.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="conteudo-missao-visao-valores"&gt;
+        &lt;h3&gt;Valores&lt;/h3&gt;
+        &lt;p&gt;Nos tornar uma referência dentro do universo do Skate, vender as melhores experiências aos nossos clientes.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;</div></div></div>
         HTML;
 
         $pageIdentifier = 'quem-somos-skate';
         $cmsPageModel = $this->pageFactory->create()->load($pageIdentifier, 'title');
         $cmsPageModel->setIdentifier('quem-somos-skate');
-        $cmsPageModel->setStores($website->getStoreIds());
+        $cmsPageModel->setStores([$skate_ptbr->getId()]);
         $cmsPageModel->setTitle('Quem somos');
         $cmsPageModel->setContentHeading('Quem somos');
         $cmsPageModel->setPageLayout('1column');
@@ -107,7 +127,9 @@ class CreateAboutPageSkate implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ConfigureStores::class
+        ];
     }    /**
      * {@inheritdoc}
      */
