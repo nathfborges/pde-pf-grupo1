@@ -1,0 +1,29 @@
+sku,store_view_code,product_type,name,short_description,url_key
+SKT-SH-1,skate_ibc_2,simple,Santa Cruz Powerlyte Screaming Hand Shape 7.50,,shape-santa-cruz-en
+SKT-SH-2,skate_ibc_2,simple,Element Peanuts WWFE Shape 8.250,,shape-peanuts-en
+SKT-SH-3,skate_ibc_2,simple,Element Lamour Shroom Shape 8.0,,shape-mushroom-en
+SKT-LX-1,skate_ibc_2,simple,Sandpaper Black Sheep Psycho,,sandpaper-black-sheep-en
+SKT-LX-2,skate_ibc_2,simple,Sandpaper Element Nyjah Rain Black,,sandpaper-element-en
+SKT-LX-3,skate_ibc_2,simple,Sandpaper Black Sheep Limited Area,,sandpaper-black-sheep-limited-en
+SKT-RO-1,skate_ibc_2,simple,Blue Iron Long Hypnotic 83mm Wheels,,wheels-iron-long-hypnotic-en
+SKT-RO-2,skate_ibc_2,simple,Venom Pipe Finders 57mm Wheels,,wheels-venom-en
+SKT-RO-3,skate_ibc_2,simple,Black Sheep 53mm 97A Wheels,,wheels-black-sheep-en
+SKT-CO-1,skate_ibc_2,simple,Santa Cruz C Moska E Red Bones - Complete Professional Skateboard,,skateboard-santa-cruz-c-moska-en
+SKT-CO-2,skate_ibc_2,simple,Shape Wood Light Panter - Complete Professional Skateboard,,skateboard-wood-light-panter-en
+SKT-CO-3,skate_ibc_2,simple,Shape Kronik BHA Truck 139mm - Complete Professional Skateboard,,skateboard-kronik-en
+SKT-TK-2,skate_ibc_2,simple,Street Iron 129mm Shape Truck - Grey,,truck-street-iron-en
+SKT-TK-3,skate_ibc_2,simple,Wood Light 139mm Truck Pro Old Series - Red,,truck-wood-light-en
+SKT-TK-1,skate_ibc_2,simple,Sense Light 137mm Truck - Silver,,truck-sense-light-en
+SKT-AC-1,skate_ibc_2,simple,Protective Gear + Helmet Hardy,,gear-capacete-hardy-en
+SKT-AC-2,skate_ibc_2,simple,Black Sheep Bearing – Gold,,bearing-gold-blacksheep-en
+SKT-CO-4,skate_ibc_2,simple,Miss Black Cat Pink - Complete Professional Skateboard,,skateboard-misscat-en
+SKT-CO-5,skate_ibc_2,simple,Maple Nineclouds Mystic - Complete Professional Skateboard,"",skateboard-ninecloudsmystic-en
+SKT-RO-4,skate_ibc_2,simple,Moska Bowl Banks 58mm Wheels,,wheels-moska-en
+SKT-BN-1,skate_ibc_2,simple,Cap Charlie Brown Jr – Blue,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-blue
+SKT-BN-2,skate_ibc_2,simple,Cap Charlie Brown Jr – White,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-white
+SKT-BN-3,skate_ibc_2,simple,Cap Charlie Brown Jr – Black,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-black
+SKT-BN-4,skate_ibc_2,configurable,Cap Charlie Brown Jr,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj
+SKT-CR-1,skate_ibc_2,virtual,Course - Learn from Zero +10 Tricks (PT-BR),<p>Course for you who are starting to do some tricks and wants to learn 10 new cool tricks!</p>,tricks-course
+SKT-SW-1,skate_ibc_2,downloadable,Show Charlie Brown Jr – Acoustic MTV,"<p>Live Show of CBJr on MTV for downloadd, a classic!</p>",cbjr-show
+SK-KIT-1,skate_ibc_2,bundle,My First Skate Kit - Feline,,
+SK-KIT-2,skate_ibc_2,grouped,Assemble Your Skate Kit,,
