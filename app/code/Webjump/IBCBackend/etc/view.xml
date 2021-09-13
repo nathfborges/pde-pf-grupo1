@@ -1,6 +1,0 @@
-<images module="Magento_Catalog">
-    <image id="unique_image_id" type="image">
-        <width>100</width> <!-- Image width in px -->
-        <height>100</height> <!-- Image height in px -->
-    </image>
-</images>
