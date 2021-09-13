@@ -1,7 +1,46 @@
-h1, h2, h3, h4, h5, h6, a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
     font-family: @montserratBold;
 }
 
-p, li {
+p,
+li {
     font-family: @montserratRegular;
+}
+
+.box-actions a {
+    color: @roxo;
+}
+
+.block-title a {
+    color: @roxo;
+}
+
+main button {
+    background-color: @roxo !important;
+    border: none !important;
+    border-radius: 3px !important;
+    color: white !important;
+
+    &:hover {
+        color: @verdeNeon !important;
+    }
+}
+
+.actions-toolbar {
+    .details {
+        color: @roxo;
+    }
+}
+
+.multicheckout {
+    color: @roxo;
+    &:hover {
+        color: darken(@roxo, 5);
+    }
 }
