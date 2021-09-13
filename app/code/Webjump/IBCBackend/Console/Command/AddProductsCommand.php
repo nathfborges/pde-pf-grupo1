@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Webjump\IBCBackend\Model\Product\AddProducts;
 use Magento\Framework\Console\Cli;
 
+/** @codeCoverageIgnore */
 Class AddProductsCommand extends Command
 {
     private AddProducts $addProducts;
