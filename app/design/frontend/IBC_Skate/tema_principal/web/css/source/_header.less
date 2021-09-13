@@ -1,24 +1,25 @@
-.page-header{
+.page-header {
     background-color: @preto;
-    .panel.wrapper{
+    .panel.wrapper {
         background-color: darken(@preto, 2);
         border-color: @preto;
     }
 }
 
-header, .sections.nav-sections{
+header,
+.sections.nav-sections {
     font-family: @robotoBold;
-} 
+}
 
 .panel {
-    .header{
+    .header {
         color: @laranjaClaro;
-        .links{
+        .links {
             a {
                 color: @branco !important;
             }
-            @media screen and (min-width: 768px){
-                a{
+            @media screen and (min-width: 768px) {
+                a {
                     color: @laranjaClaro !important;
                 }
             }
@@ -26,22 +27,22 @@ header, .sections.nav-sections{
     }
 }
 
-.action.showcart::before{
-    color:@laranjaEscuro !important;
+.action.showcart::before {
+    color: @laranjaEscuro !important;
 }
 
-.actions button::before{
+.actions button::before {
     color: @branco !important;
 }
 
 .section-item-content {
     background-color: @laranjaClaro;
-    
+
     nav {
         background-color: @laranjaClaro;
-        ul{
-            li{
-                a{
+        ul {
+            li {
+                a {
                     color: @branco !important;
                 }
             }
@@ -50,24 +51,26 @@ header, .sections.nav-sections{
 }
 
 .block-search input {
-    @media screen and (min-width:768px){
+    @media screen and (min-width: 768px) {
         border-radius: 50px;
         border: 2px solid @laranjaEscuro;
         color: @branco;
         background-color: @preto;
-        &::placeholder{
+        &::placeholder {
             color: @branco;
         }
     }
 }
 
-@media screen and (min-width: 768px){
-    .control input {
-        margin-top: 25px;
-    }
+@media screen and (min-width: 768px) {
+    .search {
+        .control input {
+            margin-top: 25px;
+        }
 
-    .control::before {
-        margin-top: 25px !important;
+        .control::before {
+            margin-top: 25px !important;
+        }
     }
 
     .minicart-wrapper {
@@ -77,4 +80,19 @@ header, .sections.nav-sections{
     .actions button {
         margin-top: 25px !important;
     }
+}
+
+@media only screen and (max-width: 767px) {
+    .nav-sections .header.links a,
+    .nav-sections .header.links a:hover {
+        color: @branco;
+    }
+}
+
+.navigation .level0.active > .level-top {
+    border: none;
+}
+
+.block-collapsible-nav .item.current > strong {
+    border-color: @laranjaEscuro
 }

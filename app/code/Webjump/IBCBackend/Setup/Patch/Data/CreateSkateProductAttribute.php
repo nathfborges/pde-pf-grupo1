@@ -12,11 +12,14 @@ use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
-
+/**
+ * @codeCoverageIgnore
+ */
 class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertableInterface
 {
     const ATTRIBUTE_CODE_1 = 'shape_size';
     const ATTRIBUTE_CODE_2 = 'shape_type';
+    const ATTRIBUTE_CODE_3 = 'color';
 
     /**
      * @var EavSetupFactory
@@ -40,12 +43,12 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
 
     /**
      * CreateGamesProductAtribute contructor.
-     * 
+     *
      * @param EavSetupFactory
      * @param ModuleDataSetupInterface
      * @param ProductAttributeManagementInterface
      * @param AttributeSetFactory
-     * 
+     *
      * @return void
      */
     public function __construct(
@@ -76,14 +79,14 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             [
                 'attribute_set' => 'Skate',
                 'user_defined' => true,
-                'type' => 'decimal',
+                'type' => 'text',
                 'label' => 'Tamanho do Shape',
                 'input' => 'select',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
-                'visible_on_front' => false,
+                'visible_on_front' => true,
                 'option' => ['values' => ['7.5', '7.75', '8.0', '8.25', '8.5']]
             ]
         );
@@ -101,21 +104,41 @@ class CreateSkateProductAttribute implements DataPatchInterface, PatchRevertable
             [
                 'attribute_set' => 'Skate',
                 'user_defined' => true,
-                'type' => 'decimal',
+                'type' => 'text',
                 'label' => 'Tipo de shape',
                 'input' => 'select',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
                 'used_in_product_listing' => true,
                 'system' => false,
-                'visible_on_front' => false,
-                'option' => ['values' => ['Maple', 'Fibra', 'Marfin']]
+                'visible_on_front' => true,
             ]
         );
 
         $sortOrderTwo = 51;
         $this->productAttributeManagement
             ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_2, $sortOrderTwo);
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::ATTRIBUTE_CODE_3,
+            [
+                'attribute_set' => 'Skate',
+                'user_defined' => true,
+                'type' => 'text',
+                'label' => 'Cor',
+                'input' => 'select',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'used_in_product_listing' => true,
+                'system' => false,
+                'visible_on_front' => true,
+            ]
+        );
+
+        $sortOrderThree = 53;
+        $this->productAttributeManagement
+            ->assign($attributeSetId, $attributeGroupId, self::ATTRIBUTE_CODE_3, $sortOrderThree);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
