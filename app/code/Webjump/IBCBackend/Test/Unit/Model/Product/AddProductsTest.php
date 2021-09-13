@@ -249,21 +249,20 @@ class AddProductsTest extends TestCase
             ->method('create')
             ->willReturn($this->csv);
 
-        $this->import->expects($this->exactly($this->never()))
+        $this->import->expects($this->never())
             ->method('importSource')
             ->willReturn(true);
 
-        $this->output->expects($this->exactly($this->never()))
+        $this->output->expects($this->never())
             ->method('writeln');
 
-        $this->import->expects($this->exactly($iterationsOfImportDataConst))
-            ->method('invalidateIndex')
-            ->willReturn(true);
+        $this->import->expects($this->never())
+            ->method('invalidateIndex');
 
         $iterationsOfGroupedDataConst = count(Model::GROUPED_DATA);
         $iterationsOfGroupedDataSkus = $this->countGroupedDataConst();
 
-        $this->productLinkInterfaceFactory->expects($this->exactly($iterationsOfGroupedDataConst))
+        $this->productLinkInterfaceFactory->expects($this->exactly($iterationsOfGroupedDataSkus))
             ->method('create')
             ->willReturn($this->productLinkInterface);
 
@@ -283,14 +282,14 @@ class AddProductsTest extends TestCase
             ->method('setLinkedProductType')
             ->willReturnSelf();
 
-        $this->productRepositoryInterface->expects($this->exactly($iterationsOfGroupedDataSkus))
+        $this->productRepositoryInterface->expects($this->exactly($iterationsOfGroupedDataConst))
             ->method('get')
             ->willReturn($this->productInterface);
 
-        $this->productInterface->expects($this->exactly($iterationsOfGroupedDataSkus))
+        $this->productInterface->expects($this->exactly($iterationsOfGroupedDataConst))
             ->method('setProductLinks');
 
-        $this->productRepositoryInterface->expects($this->exactly($iterationsOfGroupedDataSkus))
+        $this->productRepositoryInterface->expects($this->exactly($iterationsOfGroupedDataConst))
             ->method('save')
             ->with($this->productInterface);
 
