@@ -9,12 +9,12 @@ use Magento\Framework\Filesystem\Io\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Magento\Framework\App\Area;
-use Magento\Framework\App\State;
+use Webjump\IBCBackend\App\State;
 
 
 class AddProducts
 {
-    const DATA = [
+    const IMPORT_DATA = [
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
@@ -67,7 +67,7 @@ class AddProducts
                 'simpleSkus' => [
                     'Sku1' => 'JG-LT-MK11-1',
                     'Sku2' => 'JG-LT-UFC-1',
-                    'Sku3' => 'JG-LT-IG-1'
+                    'Sku3' => 'JG-LT-IG-1',
                 ]
         ]
     ];
@@ -110,7 +110,7 @@ class AddProducts
     /**
      * @var ProductRepositoryInterface
      */
-    private $productRepository;
+    private $productRepositoryInterface;
 
     public function __construct(
         ImportFactory $importFactory,
@@ -120,7 +120,7 @@ class AddProducts
         ConsoleOutput $output,
         State $state,
         ProductLinkInterfaceFactory $productLinkInterfaceFactory,
-        ProductRepositoryInterface $productRepository
+        ProductRepositoryInterface $productRepositoryInterface
     )
     {
         $this->importFactory = $importFactory;
@@ -130,13 +130,13 @@ class AddProducts
         $this->output = $output;
         $this->state = $state;
         $this->productLinkInterfaceFactory = $productLinkInterfaceFactory;
-        $this->productRepository = $productRepository;
+        $this->productRepositoryInterface = $productRepositoryInterface;
     }
 
 
     public function execute(): void
     {
-        foreach (self::DATA as $data) {
+        foreach (self::IMPORT_DATA as $data) {
             $this->importData(
                 $data['file'],
                 $data['entity'],
@@ -186,7 +186,6 @@ class AddProducts
             ]
         );
         return $csvSource;
-
     }
 
     private function settingAreaCode()
@@ -205,13 +204,12 @@ class AddProducts
             $productLink->setSku($groupedSku)
                 ->setLinkedProductSku($skus)
                 ->setLinkType('associated')
-                ->setLinkedProductType('simple')
-                ->setQty(1);
+                ->setLinkedProductType('simple');
             $arrayOfAllSimpleProductLinks[] = $productLink;
         }
 
-        $groupedProduct = $this->productRepository->get($groupedSku, true);
-        $groupedProduct->setProductLinks($arrayOfAllSimpleProductLinks)
-            ->save();
+        $groupedProduct = $this->productRepositoryInterface->get($groupedSku, true);
+        $groupedProduct->setProductLinks($arrayOfAllSimpleProductLinks);
+        $this->productRepositoryInterface->save($groupedProduct);
     }
 }
