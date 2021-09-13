@@ -17,13 +17,13 @@ SKT-TK-1,skate_ibc_2,simple,Sense Light 137mm Truck - Silver,,truck-sense-light-
 SKT-AC-1,skate_ibc_2,simple,Protective Gear + Helmet Hardy,,gear-capacete-hardy-en
 SKT-AC-2,skate_ibc_2,simple,Black Sheep Bearing – Gold,,bearing-gold-blacksheep-en
 SKT-CO-4,skate_ibc_2,simple,Miss Black Cat Pink - Complete Professional Skateboard,,skateboard-misscat-en
-SKT-CO-5,skate_ibc_2,simple,Maple Nineclouds Mystic - Complete Professional Skateboard,,skateboard-ninecloudsmystic-en
+SKT-CO-5,skate_ibc_2,simple,Maple Nineclouds Mystic - Complete Professional Skateboard,"",skateboard-ninecloudsmystic-en
 SKT-RO-4,skate_ibc_2,simple,Moska Bowl Banks 58mm Wheels,,wheels-moska-en
-SKT-BN-1,skate_ibc_2,simple,Cap Charlie Brown Jr – Blue,<p>Top CBRj cap for you who like a SKATE SKATE!</p>,cap-cbrj-blue
-SKT-BN-2,skate_ibc_2,simple,Cap Charlie Brown Jr – White,<p>Top CBRj cap for you who like a SKATE SKATE!</p>,cap-cbrj-white
-SKT-BN-3,skate_ibc_2,simple,Cap Charlie Brown Jr – Black,<p>Top CBRj cap for you who like a SKATE SKATE!</p>,cap-cbrj-black
-SKT-BN-4,skate_ibc_2,configurable,Cap Charlie Brown Jr,<p>Top CBRj cap for you who like a SKATE SKATE!</p>,cap-cbrj
-SKT-CR-1,skate_ibc_2,virtual,Course - Learn from Zero +10 Tricks,<p>Course for you who are starting to do some tricks and wants to learn 10 new cool tricks!</p>,tricks-course
+SKT-BN-1,skate_ibc_2,simple,Cap Charlie Brown Jr – Blue,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-blue
+SKT-BN-2,skate_ibc_2,simple,Cap Charlie Brown Jr – White,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-white
+SKT-BN-3,skate_ibc_2,simple,Cap Charlie Brown Jr – Black,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-black
+SKT-BN-4,skate_ibc_2,configurable,Cap Charlie Brown Jr,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj
+SKT-CR-1,skate_ibc_2,virtual,Course - Learn from Zero +10 Tricks (In PT-BR),<p>Course for you who are starting to do some tricks and wants to learn 10 new cool tricks!</p>,tricks-course
 SKT-SW-1,skate_ibc_2,downloadable,Show Charlie Brown Jr – Acoustic MTV,"<p>Live Show of CBJr on MTV for downloadd, a classic!</p>",cbjr-show
-SK-KIT-1,skate_ibc_3,bundle,My First Skate Kit - Feline,,
-SK-KIT-2,skate_ibc_4,grouped,Assemble Your Skate Kit,,
+SK-KIT-1,skate_ibc_2,bundle,My First Skate Kit - Feline,,
+SK-KIT-2,skate_ibc_2,grouped,Assemble Your Skate Kit,,

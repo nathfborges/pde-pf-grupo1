@@ -1,20 +1,19 @@
 <?php
 namespace Webjump\IBCBackend\Console\Command;
 
-use Magento\Setup\Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Webjump\IBCBackend\Model\Product\Importer;
+use Webjump\IBCBackend\Model\Product\AddProducts;
 use Magento\Framework\Console\Cli;
 
-Class ImporterCommand extends Command
+Class AddProductsCommand extends Command
 {
-    private Importer $importer;
+    private AddProducts $addProducts;
 
-    public function __construct(Importer $importer)
+    public function __construct(AddProducts $addProducts)
     {
-        $this->importer = $importer;
+        $this->addProducts = $addProducts;
         parent::__construct();
     }
 
@@ -26,7 +25,7 @@ Class ImporterCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $item = $this->importer->execute();
+        $this->addProducts->execute();
         return Cli::RETURN_SUCCESS;
     }
 }

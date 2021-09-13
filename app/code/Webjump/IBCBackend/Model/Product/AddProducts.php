@@ -11,9 +11,10 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 
-class Importer
+
+class AddProducts
 {
-    const IMPORT_CSV = [
+    const DATA = [
         0 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
@@ -53,11 +54,23 @@ class Importer
 
     Const GROUPED_DATA = [
         0 => [
-            'entity' => 'catalog_product',
-            'behavior' => 'add_update',
-            'file' => 'productsGames.csv'
-
-    ]
+            'groupedSku' => 'SK-KIT-2',
+            'simpleSkus' => [
+                'Sku1' => 'SKT-RO-1',
+                'Sku2' => 'SKT-TK-3',
+                'Sku3' => 'SKT-LX-1',
+                'Sku4' => 'SKT-SH-2'
+            ]
+        ],
+        1 => [
+                'groupedSku' => 'JG-KIT-LUTA',
+                'simpleSkus' => [
+                    'Sku1' => 'JG-LT-MK11-1',
+                    'Sku2' => 'JG-LT-UFC-1',
+                    'Sku3' => 'JG-LT-IG-1'
+                ]
+        ]
+    ];
 
     /**
      * @var ImportFactory
@@ -120,19 +133,25 @@ class Importer
         $this->productRepository = $productRepository;
     }
 
-    /**
-     * @return void
-     */
+
     public function execute(): void
     {
-        foreach (self::IMPORT_DATA as $data) {
+        foreach (self::DATA as $data) {
             $this->importData(
                 $data['file'],
                 $data['entity'],
                 $data['behavior']
             );
         }
-//        $this->associateSkuWithGroupedProducts();
+
+        $this->settingAreaCode();
+
+        foreach (self::GROUPED_DATA as $data) {
+            $this->associateSkuWithGroupedProducts(
+                $data['groupedSku'],
+                $data['simpleSkus']
+            );
+        }
     }
 
     private function importData($fileName, $entity, $behavior)
@@ -177,53 +196,22 @@ class Importer
         }
     }
 
-    private function associateSkuWithGroupedProducts()
+    private function associateSkuWithGroupedProducts($groupedSku, $simpleSkus)
     {
-        $this->settingAreaCode();
+        $arrayOfAllSimpleProductLinks = [];
 
-        $productLinkGrouped1 = $this->productLinkInterfaceFactory->create();
-        $productLinkGrouped1->setSku('SK-KIT-2')
-            ->setLinkedProductSku('SKT-TK-3')
-            ->setLinkType('associated')
-            ->setLinkedProductType('simple')
-            ->setQty('1');
+        foreach ($simpleSkus as $skus) {
+            $productLink = $this->productLinkInterfaceFactory->create();
+            $productLink->setSku($groupedSku)
+                ->setLinkedProductSku($skus)
+                ->setLinkType('associated')
+                ->setLinkedProductType('simple')
+                ->setQty(1);
+            $arrayOfAllSimpleProductLinks[] = $productLink;
+        }
 
-        $productLinkGrouped2 = $this->productLinkInterfaceFactory->create();
-        $productLinkGrouped2->setSku('SK-KIT-2')
-            ->setLinkedProductSku('SKT-LX-1')
-            ->setLinkType('associated')
-            ->setLinkedProductType('simple')
-            ->setQty('1');
-
-        $productLinkGrouped3 = $this->productLinkInterfaceFactory->create();
-        $productLinkGrouped3->setSku('SK-KIT-2')
-            ->setLinkedProductSku('SKT-RO-1')
-            ->setLinkType('associated')
-            ->setLinkedProductType('simple')
-            ->setQty('1');
-
-        $productLinkGrouped4 = $this->productLinkInterfaceFactory->create();
-        $productLinkGrouped4->setSku('SK-KIT-2')
-            ->setLinkedProductSku('SKT-SH-2')
-            ->setLinkType('associated')
-            ->setLinkedProductType('simple')
-            ->setQty('1');
-
-        $productLinkGrouped5 = $this->productLinkInterfaceFactory->create();
-        $productLinkGrouped5->setSku('SK-KIT-2')
-            ->setLinkedProductSku('SKT-RO-1')
-            ->setLinkType('associated')
-            ->setLinkedProductType('simple')
-            ->setQty('1');
-
-        $groupedKit2 = $this->productRepository->get('SK-KIT-2', true);
-        $groupedKit2->setProductLinks([
-            $productLinkGrouped1,
-            $productLinkGrouped2,
-            $productLinkGrouped3,
-            $productLinkGrouped4,
-            $productLinkGrouped5
-        ])
+        $groupedProduct = $this->productRepository->get($groupedSku, true);
+        $groupedProduct->setProductLinks($arrayOfAllSimpleProductLinks)
             ->save();
     }
 }

@@ -4,7 +4,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="ibcBackend" xsi:type="object">Webjump\IBCBackend\Console\Command\ImporterCommand</item>
+                <item name="ibcBackend" xsi:type="object">Webjump\IBCBackend\Console\Command\AddProductsCommand</item>
             </argument>
         </arguments>
     </type>
