@@ -49,11 +49,6 @@ class AddProducts
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'website-productsSkate.csv'
-        ],
-        7 => [
-            'entity' => 'stock_sources',
-            'behavior' => 'append',
-            'file' => 'stockHN.csv'
         ]
     ];
 
