@@ -21,29 +21,29 @@ class AddProducts
             'file' => 'productsGames.csv'
         ],
         1 => [
-            'entity' => 'stock_sources',
-            'behavior' => 'append',
-            'file' => 'stockGames.csv'
-        ],
-        2 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'productsSkate.csv'
         ],
-        3 => [
+        2 => [
             'entity' => 'catalog_product',
             'behavior' => 'delete',
             'file' => 'otherTypesProducts.csv'
         ],
-        4 => [
+        3 => [
             'entity' => 'catalog_product',
             'behavior' => 'add_update',
             'file' => 'otherTypesProducts.csv'
         ],
-        5 => [
+        4 => [
             'entity' => 'stock_sources',
             'behavior' => 'append',
             'file' => 'stockSkate.csv'
+        ],
+        5 => [
+            'entity' => 'stock_sources',
+            'behavior' => 'append',
+            'file' => 'stockGames.csv'
         ],
         6 => [
             'entity' => 'catalog_product',
