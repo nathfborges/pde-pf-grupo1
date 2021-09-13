@@ -141,7 +141,6 @@ class InstallRefactoredCategories implements DataPatchInterface
                 ->save();
         }
 
-        echo shell_exec('bin/magento ok:urlrewrites:regenerate --entity-type=category');
     }
 
     private function getData()
