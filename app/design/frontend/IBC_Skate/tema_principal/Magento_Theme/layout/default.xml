@@ -28,9 +28,16 @@
         </container>
     </referenceContainer>
         <referenceContainer name="main.content">           
-       <block class="Magento\Cms\Block\Block" name="whatsapp">
+       <block class="Magento\Cms\Block\Block" name="whatsapp-ing">
            <arguments>
-                <argument name="block_id" xsi:type="string">botao-whatsapp</argument>
+                <argument name="block_id" xsi:type="string">botao-whatsapp-ing</argument>
+           </arguments>
+       </block>
+    </referenceContainer>
+            <referenceContainer name="main.content">           
+       <block class="Magento\Cms\Block\Block" name="whatsapp-pt">
+           <arguments>
+                <argument name="block_id" xsi:type="string">botao-whatsapp-pt</argument>
            </arguments>
        </block>
     </referenceContainer>
