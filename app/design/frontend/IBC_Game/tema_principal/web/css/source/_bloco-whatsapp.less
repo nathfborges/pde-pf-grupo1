@@ -1,4 +1,4 @@
-.whatsapp{
+.whatsapp {
     display: flex;
     position: fixed;
     fill: #25d366;
@@ -7,19 +7,22 @@
     border-radius: 50%;
     width: 54px;
     height: 54px;
-    transition: .8s all;
+    transition: 0.8s all;
     transform-origin: right;
     align-items: center;
     justify-content: center;
     right: 25px;
     z-index: 2;
-        svg {
-            display: block;
-            width: 54px;
-            height: 54px;
-        }
-        &:hover {
-            fill: #2de671;;
-            transform: scale(1.1) rotate(10deg);
-        }
+    svg {
+        display: block;
+        width: 54px;
+        height: 54px;
+    }
+    &:hover {
+        fill: #2de671;
+        transform: scale(1.1) rotate(10deg);
+    }
+    @media print {
+        display: none !important;
+    }
 }

@@ -19,6 +19,10 @@ main button {
     border: none !important;
     border-radius: 3px !important;
     color: white !important;
+
+    &:hover {
+        background-color: lighten(@laranjaClaro, 5) !important;
+    }
 }
 
 .actions-toolbar {
@@ -31,5 +35,12 @@ main button {
     color: @laranjaEscuro;
     &:hover {
         color: darken(@laranjaEscuro, 5);
+    }
+}
+
+.modal-popup {
+    .action-accept {
+        background-color: @laranjaEscuro;
+        border-color: @laranjaEscuro;
     }
 }
