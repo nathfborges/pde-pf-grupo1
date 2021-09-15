@@ -1,8 +1,12 @@
 .page-header {
     background-color: @cinzaClaro;
+    border: 0;
     .panel.wrapper {
         background-color: darken(@cinzaClaro, 2);
         border-color: @cinzaClaro;
+    }
+    @media screen and (max-width: 767px) {
+        margin-bottom: 0; 
     }
 }
 
@@ -64,6 +68,14 @@ header,
                     color: @brancoNeve !important;
                 }
             }
+        }
+    }
+}
+
+.section-item-title {
+    @media screen and (max-width: 767px) {
+        a {
+            color: @roxo;
         }
     }
 }

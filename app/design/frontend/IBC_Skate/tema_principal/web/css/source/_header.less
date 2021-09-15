@@ -1,8 +1,12 @@
 .page-header {
     background-color: @preto;
+    border: 0;
     .panel.wrapper {
         background-color: darken(@preto, 2);
         border-color: @preto;
+    }
+    @media screen and (max-width: 767px) {
+        margin-bottom: 0;
     }
 }
 
@@ -24,6 +28,12 @@ header,
                 }
             }
         }
+    }
+}
+
+.logo {
+    @media screen and (max-width: 767px) {
+        max-width: 30%;
     }
 }
 
@@ -89,6 +99,25 @@ header,
     }
 }
 
+.section-item-title {
+    @media screen and (max-width: 767px) {
+        a {
+            color: @laranjaEscuro;
+        }
+    }
+}
+
+.switcher-language {
+    @media screen and (max-width: 767px) {
+        .switcher-option {
+            a {
+                color: @branco;
+            }
+        }
+        color: @branco;
+    }
+}
+
 .minicart-wrapper {
     .counter.qty {
         position: absolute;
@@ -106,5 +135,5 @@ header,
 }
 
 .block-collapsible-nav .item.current > strong {
-    border-color: @laranjaEscuro
+    border-color: @laranjaEscuro;
 }

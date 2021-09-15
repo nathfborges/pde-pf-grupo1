@@ -1,40 +1,42 @@
-.slick-track {
-    .product-item-name {
-        @media screen and (min-width: 768px) {
-            height: 34px;
-            overflow: hidden;
+.product-items {
+    .slick-track {
+        .product-item-name {
+            @media screen and (min-width: 768px) {
+                height: 34px;
+                overflow: hidden;
+            }
+            @media screen and (max-width: 767px) {
+                height: 60px;
+            }
         }
-        @media screen and (max-width: 767px) {
-            height: 60px;
+        .price-box {
+            height: 35px;
+            @media screen and (max-width: 767px) {
+                height: 50px;
+            }
         }
-    }
-    .price-box {
-        height: 35px;
-        @media screen and (max-width: 767px) {
-            height: 50px;
+        .tocart {
+            border-radius: 3px;
+            @media screen and (max-width: 767px) {
+                font-size: 10px;
+            }
         }
-    }
-    .tocart {
-        border-radius: 3px;
-        @media screen and (max-width: 767px) {
-            font-size: 10px;
+        .product-item-actions .actions-secondary > .action:before {
+            color: @verdeNeon;
         }
-    }
-    .product-item-actions .actions-secondary > .action:before {
-        color: @verdeNeon;
-    }
 
-    @media screen and (max-width: 767px) {
-        margin-left: 15px !important;
+        @media screen and (max-width: 767px) {
+            margin-left: 15px !important;
+        }
     }
-
 }
 
 .product-image-photo {
     border-radius: 15px;
 }
 
-.slick-prev, .slick-next {
+.slick-prev,
+.slick-next {
     background-color: fade(@brancoNeve, 80) !important;
     &:hover {
         background-color: fade(@brancoNeve, 80) !important;
