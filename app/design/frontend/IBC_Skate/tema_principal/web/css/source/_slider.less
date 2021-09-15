@@ -4,12 +4,25 @@
             height: 34px;
             overflow: hidden;
         }
+        @media screen and (max-width: 767px) {
+            height: 60px;
+        }
     }
     .price-box {
         height: 35px;
+        @media screen and (max-width: 767px) {
+            height: 50px;
+        }
     }
     .tocart {
         border-radius: 3px;
+        @media screen and (max-width: 767px) {
+            font-size: 10px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        margin-left: 15px !important;
     }
 }
 
@@ -19,4 +32,11 @@
 
 .slick-prev, .slick-next {
     background-color: fade(@branco, 80) !important;
+    &:hover {
+        background-color: fade(@branco, 80) !important;
+    }
+
+    @media screen and (max-width: 767px) {
+        display: none !important;
+    }
 }
