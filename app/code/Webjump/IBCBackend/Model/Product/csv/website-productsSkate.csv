@@ -1,29 +1,29 @@
-sku,store_view_code,product_type,name,short_description,url_key
-SKT-SH-1,skate_ibc_2,simple,Santa Cruz Powerlyte Screaming Hand Shape 7.50,,shape-santa-cruz-en
-SKT-SH-2,skate_ibc_2,simple,Element Peanuts WWFE Shape 8.250,,shape-peanuts-en
-SKT-SH-3,skate_ibc_2,simple,Element Lamour Shroom Shape 8.0,,shape-mushroom-en
-SKT-LX-1,skate_ibc_2,simple,Sandpaper Black Sheep Psycho,,sandpaper-black-sheep-en
-SKT-LX-2,skate_ibc_2,simple,Sandpaper Element Nyjah Rain Black,,sandpaper-element-en
-SKT-LX-3,skate_ibc_2,simple,Sandpaper Black Sheep Limited Area,,sandpaper-black-sheep-limited-en
-SKT-RO-1,skate_ibc_2,simple,Blue Iron Long Hypnotic 83mm Wheels,,wheels-iron-long-hypnotic-en
-SKT-RO-2,skate_ibc_2,simple,Venom Pipe Finders 57mm Wheels,,wheels-venom-en
-SKT-RO-3,skate_ibc_2,simple,Black Sheep 53mm 97A Wheels,,wheels-black-sheep-en
-SKT-CO-1,skate_ibc_2,simple,Santa Cruz C Moska E Red Bones - Complete Professional Skateboard,,skateboard-santa-cruz-c-moska-en
-SKT-CO-2,skate_ibc_2,simple,Shape Wood Light Panter - Complete Professional Skateboard,,skateboard-wood-light-panter-en
-SKT-CO-3,skate_ibc_2,simple,Shape Kronik BHA Truck 139mm - Complete Professional Skateboard,,skateboard-kronik-en
-SKT-TK-2,skate_ibc_2,simple,Street Iron 129mm Shape Truck - Grey,,truck-street-iron-en
-SKT-TK-3,skate_ibc_2,simple,Wood Light 139mm Truck Pro Old Series - Red,,truck-wood-light-en
-SKT-TK-1,skate_ibc_2,simple,Sense Light 137mm Truck - Silver,,truck-sense-light-en
-SKT-AC-1,skate_ibc_2,simple,Protective Gear + Helmet Hardy,,gear-capacete-hardy-en
-SKT-AC-2,skate_ibc_2,simple,Black Sheep Bearing – Gold,,bearing-gold-blacksheep-en
-SKT-CO-4,skate_ibc_2,simple,Miss Black Cat Pink - Complete Professional Skateboard,,skateboard-misscat-en
-SKT-CO-5,skate_ibc_2,simple,Maple Nineclouds Mystic - Complete Professional Skateboard,"",skateboard-ninecloudsmystic-en
-SKT-RO-4,skate_ibc_2,simple,Moska Bowl Banks 58mm Wheels,,wheels-moska-en
-SKT-BN-1,skate_ibc_2,simple,Cap Charlie Brown Jr – Blue,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-blue
-SKT-BN-2,skate_ibc_2,simple,Cap Charlie Brown Jr – White,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-white
-SKT-BN-3,skate_ibc_2,simple,Cap Charlie Brown Jr – Black,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-black
-SKT-BN-4,skate_ibc_2,configurable,Cap Charlie Brown Jr,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj
-SKT-CR-1,skate_ibc_2,virtual,Course - Learn from Zero +10 Tricks (PT-BR),<p>Course for you who are starting to do some tricks and wants to learn 10 new cool tricks!</p>,tricks-course
-SKT-SW-1,skate_ibc_2,downloadable,Show Charlie Brown Jr – Acoustic MTV,"<p>Live Show of CBJr on MTV for downloadd, a classic!</p>",cbjr-show
-SK-KIT-1,skate_ibc_2,bundle,My First Skate Kit - Feline,,
-SK-KIT-2,skate_ibc_2,grouped,Assemble Your Skate Kit,,
+sku,store_view_code,product_type,name,short_description,url_key,meta_title
+SKT-SH-1,skate_ibc_2,simple,Santa Cruz Powerlyte Screaming Hand Shape 7.50,<p> Santa Cruz Shape with the classic symbol! Ideal for those who like the street style. </p>,shape-santa-cruz-en,Santa Cruz Powerlyte Screaming Hand Shape 7.50
+SKT-SH-2,skate_ibc_2,simple,Element Peanuts WWFE Shape 8.250,"<p>Element shape with Peanuts design, super cool!</p>",shape-peanuts-en,Element Peanuts WWFE Shape 8.250
+SKT-SH-3,skate_ibc_2,simple,Element Lamour Shroom Shape 8.0,"<p>Element shape with a really crazy design, mushrooms and the like.</p>",shape-mushroom-en,Element Lamour Shroom Shape 8.0
+SKT-LX-1,skate_ibc_2,simple,Sandpaper Black Sheep Psycho,,sandpaper-black-sheep-en,Sandpaper Black Sheep Psycho
+SKT-LX-2,skate_ibc_2,simple,Sandpaper Element Nyjah Rain Black,<p>Element Nyjah Rain Sandpaper has high quality and great resistance and its non-slip base provides excellent grip.</p>,sandpaper-element-en,Sandpaper Element Nyjah Rain Black
+SKT-LX-3,skate_ibc_2,simple,Sandpaper Black Sheep Limited Area,"<p>The Black Sheep Rubberized Sandpaper is a great choice colored rubberized sandpaper, with well-defined graphics and drawings is its differential, in other words, one of the best choices for you who don't want to use the basic black sandpaper that the vast majority of skateboarders uses.</p>",sandpaper-black-sheep-limited-en,Sandpaper Black Sheep Limited Area
+SKT-RO-1,skate_ibc_2,simple,Blue Iron Long Hypnotic 83mm Wheels,,wheels-iron-long-hypnotic-en,Blue Iron Long Hypnotic 83mm Wheels
+SKT-RO-2,skate_ibc_2,simple,Venom Pipe Finders 57mm Wheels,<p>Venon Pipe Finders wheels are great in terms of speed and stability.</p>,wheels-venom-en,Venom Pipe Finders 57mm Wheels
+SKT-RO-3,skate_ibc_2,simple,Black Sheep 53mm 97A Wheels,"<p>Black Sheep Tubo Wheels are professional wheels, developed for those looking for quality, with an affordable price.</p>",wheels-black-sheep-en,Black Sheep 53mm 97A Wheels
+SKT-CO-1,skate_ibc_2,simple,Santa Cruz C Moska E Red Bones - Complete Skateboard,"<p> This professional skateboard is perfect for anyone who wants something with a superior quality, all the pieces are top of the line and will not fall short! </p>",skateboard-santa-cruz-c-moska-en,Santa Cruz C Moska E Red Bones - Complete Professional Skateboard
+SKT-CO-2,skate_ibc_2,simple,Shape Wood Light Panter - Complete Skateboard,"<p>This cost-effective skateboard is ideal for you who are just starting out, and the black panther drawn on the shape won't let you go unnoticed.</p>",skateboard-wood-light-panter-en,Shape Wood Light Panter - Complete Professional Skateboard
+SKT-CO-3,skate_ibc_2,simple,Shape Kronik BHA Truck 139mm - Complete Skateboard,"<p> Complete skate for you who are looking for something discreet, but efficient or if you are starting to skate! </p>",skateboard-kronik-en,Shape Kronik BHA Truck 139mm - Complete Professional Skateboard
+SKT-TK-2,skate_ibc_2,simple,Street Iron 129mm Shape Truck - Grey,<p>Truck cost/benefit for you who are building your first skateboard.</p>,truck-street-iron-en,Street Iron 129mm Shape Truck - Grey
+SKT-TK-3,skate_ibc_2,simple,Wood Light 139mm Truck Pro Old Series - Red,<p>The 139mm Wood Light truck is magnificent! The stability and quality of the material will surely surprise you.</p>,truck-wood-light-en,Wood Light 139mm Truck Pro Old Series - Red
+SKT-TK-1,skate_ibc_2,simple,Sense Light 137mm Truck - Silver,"<p>Truck Sense Standard 137mm Silver is designed to enhance the athlete's ability, with a refined frame and distinctive contours, perfect ground clearance, an exceptionally strong build and dynamic components that contribute to quality.</p>",truck-sense-light-en,Sense Light 137mm Truck - Silver
+SKT-AC-1,skate_ibc_2,simple,Protective Gear + Helmet Hardy,,gear-capacete-hardy-en,Protective Gear + Helmet Hardy
+SKT-AC-2,skate_ibc_2,simple,Black Sheep Bearing – Gold,"<p>It makes the line of a precision bearing, which are the best quality bearings on the market. Apart from its aesthetic with the golden color, it is a high precision bearing far superior to the normal bearings found on the market.</p>",bearing-gold-blacksheep-en,Black Sheep Bearing – Gold
+SKT-CO-4,skate_ibc_2,simple,Miss Black Cat Pink - Complete Professional Skateboard,"<p>Excellent skateboard for those who are starting or are in the amateur category in the sport. Skateboard with a revolutionary design, which will provide you with lots of rides and lots of fun. </p>",skateboard-misscat-en,Miss Black Cat Pink - Complete Professional Skateboard
+SKT-CO-5,skate_ibc_2,simple,Maple Nineclouds Mystic - Complete Professional Skateboard,"<p>Our skateboard is the most suitable for skateboarders looking for more performance, lightness and a super POP.</p>",skateboard-ninecloudsmystic-en,Maple Nineclouds Mystic - Complete Professional Skateboard
+SKT-RO-4,skate_ibc_2,simple,Moska Bowl Banks 58mm Wheels,"<p>Suited for street, it has a great performance and quality. This Wheel is suitable for riding in Bowl and Banks due to its shape and hardness.</p>",wheels-moska-en,Moska Bowl Banks 58mm Wheels
+SKT-BN-1,skate_ibc_2,simple,Cap Charlie Brown Jr – Blue,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-blue,Cap Charlie Brown Jr – Blue
+SKT-BN-2,skate_ibc_2,simple,Cap Charlie Brown Jr – White,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-white,Cap Charlie Brown Jr – White
+SKT-BN-3,skate_ibc_2,simple,Cap Charlie Brown Jr – Black,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj-black,Cap Charlie Brown Jr – Black
+SKT-BN-4,skate_ibc_2,configurable,Cap Charlie Brown Jr,<p>Top CBJr cap for you who like a SKATE SKATE!</p>,cap-cbrj,Cap Charlie Brown Jr
+SKT-CR-1,skate_ibc_2,virtual,Course - Learn from Zero +10 Tricks (PT-BR),<p>Course for you who are starting to do some tricks and wants to learn 10 new cool tricks!</p>,tricks-course,Course - Learn from Zero +10 Tricks (PT-BR)
+SKT-SW-1,skate_ibc_2,downloadable,Show Charlie Brown Jr – Acoustic MTV,"<p>Live Show of CBJr on MTV for download, a classic!</p>",cbjr-show,Show Charlie Brown Jr – Acoustic MTV
+SK-KIT-1,skate_ibc_2,bundle,My First Skate Kit - Feline,"<p>Thinking of you, newbie in the world of skateboarding, we prepared this kit. Choose the skateboard that suits you best and don't forget to wear protective gear!</p>",feline-skate-kit,My First Skate Kit - Feline
+SK-KIT-2,skate_ibc_2,grouped,Assemble Your Skate Kit,"<p>Thinking of you, skater, we prepared this kit. Buy now and build your own skateboard!</p>",assemble-skate-kit,Assemble Your Skate Kit

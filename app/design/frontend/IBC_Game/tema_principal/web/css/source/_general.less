@@ -28,7 +28,8 @@ main button {
     color: white !important;
 
     &:hover {
-        color: @verdeNeon !important;
+        color: @roxo !important;
+        background-color: @verdeNeon !important;
     }
 }
 
@@ -43,4 +44,31 @@ main button {
     &:hover {
         color: darken(@roxo, 5);
     }
+}
+
+.modal-popup {
+    .action-accept {
+        background-color: @roxo;
+        border-color: @roxo;
+    }
+}
+
+.shipping-information-title {
+    button {
+        background-color: transparent !important;
+    }
+}
+
+.action-close, .showcart {
+    background-color: transparent !important;
+}
+
+.create {
+    background-color: @roxo !important; 
+        border-color: @roxo !important;
+
+        &:hover {
+            color: @roxo !important;
+            background-color: @verdeNeon !important;
+        }
 }
