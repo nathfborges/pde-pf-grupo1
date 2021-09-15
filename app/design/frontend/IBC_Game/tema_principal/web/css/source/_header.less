@@ -1,8 +1,12 @@
 .page-header {
     background-color: @cinzaClaro;
+    border: 0;
     .panel.wrapper {
         background-color: darken(@cinzaClaro, 2);
         border-color: @cinzaClaro;
+    }
+    @media screen and (max-width: 767px) {
+        margin-bottom: 0; 
     }
 }
 
@@ -68,6 +72,14 @@ header,
     }
 }
 
+.section-item-title {
+    @media screen and (max-width: 767px) {
+        a {
+            color: @roxo;
+        }
+    }
+}
+
 @media screen and (min-width: 768px) {
     .search {
         .control input {
@@ -92,6 +104,19 @@ header,
     .nav-sections .header.links a,
     .nav-sections .header.links a:hover {
         color: @brancoNeve;
+    }
+}
+
+.minicart-wrapper {
+    .counter.qty {
+        background-color: @roxo !important;
+        position: absolute;
+        height: 15px !important;
+        min-width: 10px !important;
+        line-height: 16px !important;
+        left: 13px;
+        font-size: 11px;
+        border-radius: 50% !important;
     }
 }
 
