@@ -71,7 +71,7 @@ class ConfigurePayments implements DataPatchInterface
 
         $this->configInterface->saveConfig(
             'payment/checkmo/title',
-            'Pedido por Boleto',
+            'Pagamento Dinheiro / Cheque',
             'stores',
             $ibc_skate_store_1_id
         );
@@ -96,7 +96,7 @@ class ConfigurePayments implements DataPatchInterface
 
         $this->configInterface->saveConfig(
             'payment/checkmo/title',
-            'Pedido por Boleto',
+            'Pagamento Dinheiro / Cheque',
             'stores',
             $ibc_games_store
         );
