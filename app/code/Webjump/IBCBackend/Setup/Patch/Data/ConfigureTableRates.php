@@ -8,6 +8,8 @@ use Magento\Framework\File\Csv;
 use Magento\Setup\Module\Setup;
 use DomainException;
 use Magento\Store\Api\WebsiteRepositoryInterface;
+use SebastianBergmann\Type\FalseType;
+
 /**
  * @codeCoverageIgnore
  */
@@ -116,6 +118,13 @@ class ConfigureTableRates implements DataPatchInterface
         $this->configInterface->saveConfig(
             'carriers/tablerate/sort_order',
             '0'
+        );
+
+        // DISABLE FLAT RATE
+        
+        $this->configInterface->saveConfig(
+            'carriers/flatrate/active',
+            false
         );
 
         $this->importTableRates();
